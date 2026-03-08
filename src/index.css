@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+.glass {
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(64px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.8), 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Photo Background Utility */
+.bg-photo {
+  /* Using absolute positioning, we will wrap this inside a fixed Framer Motion div */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Lighter gradient for brighter photo, bottom gets slightly darker to fade into next section */
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(20, 20, 25, 0.7) 100%), url('/IMG_2597.jpg');
+  background-size: cover;
+  /* Pin to the right so the ball is always in focus, without leaving a strange gap */
+  background-position: right center;
+  z-index: -10;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-ultra-thin {
+  font-weight: 100 !important;
+}
+
+.font-heavy {
+  font-weight: 900 !important;
+}
+
+/* Global Utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes moveDots {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 64px 64px;
+  }
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.marquee-track:has(> div:hover) {
+  animation-play-state: paused !important;
+}
