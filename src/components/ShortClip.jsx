@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export const ShortClip = ({ fileName }) => {
     const [isExpanded, setIsExpanded] = useState(false);
-    const videoSrc = `/videos/${fileName}?v=2`;
+    const videoSrc = fileName.startsWith('http') ? fileName : `/videos/${fileName}?v=2`;
 
     return (
         <>

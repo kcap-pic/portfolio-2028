@@ -40,7 +40,7 @@ export const Videos = () => {
                                         <div className="w-full rounded-2xl md:rounded-[2rem] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.2)] md:shadow-[0_20px_50px_rgba(0,0,0,0.2)] relative border border-slate-900/15 group-hover:border-slate-900/30 transition-all duration-500 z-0 bg-black">
                                             {/* HTML5 Video element */}
                                             <video
-                                                src={`/videos/${video.src}`}
+                                                src={video.src.startsWith('http') ? video.src : `/videos/${video.src}`}
                                                 controls
                                                 className="w-full max-h-[70vh] object-contain block mx-auto"
                                                 preload="metadata"
