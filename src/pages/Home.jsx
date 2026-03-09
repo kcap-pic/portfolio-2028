@@ -4,7 +4,7 @@ import { AnimatedCounter } from '../components/AnimatedCounter';
 import { SneakPeekWidget } from '../components/SneakPeekWidget';
 import { StaggerContainer, StaggerItem } from '../components/StaggerAnimations';
 import { MagneticCardFixed } from '../components/MagneticCardFixed';
-import { MediaHubTile, ProfessionalTile, SocialsTile } from '../components/NavigationalBento';
+import { MediaSection, ProfessionalSection, ConnectSection } from '../components/NavigationalBento';
 
 const TypewriterText = ({ text, delay = 0 }) => {
     return (
@@ -31,21 +31,11 @@ export const Home = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const isScrolling = useRef(false);
     const currentPageRef = useRef(0);
-    const totalPagesRef = useRef(window.innerWidth >= 1024 ? 2 : 4);
+    const totalPagesRef = useRef(2); // hero + discover
 
     useEffect(() => {
         currentPageRef.current = currentPage;
     }, [currentPage]);
-
-    useEffect(() => {
-        const handleResize = () => {
-            const newTotal = window.innerWidth >= 1024 ? 2 : 4;
-            totalPagesRef.current = newTotal;
-            setCurrentPage(prev => Math.min(prev, newTotal - 1));
-        };
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     useEffect(() => {
         // Register ONCE — uses ref so it never needs to be re-registered
@@ -176,31 +166,33 @@ export const Home = () => {
                     </StaggerContainer>
                 </section>
 
-                {/* Page 2: Desktop Bento Dashboard */}
-                <section className="w-full h-screen relative hidden lg:flex flex-col justify-center py-24 bg-gradient-to-br from-slate-200 via-slate-100 to-slate-200 z-10 px-6 pointer-events-auto shrink-0">
-                    <div className="w-full h-full max-w-7xl mx-auto flex flex-col items-center justify-center">
-                        <h2 className="text-4xl text-center font-ultra-thin mb-8 shrink-0">Discover <strong className="font-heavy">More</strong></h2>
-                        <div className="grid grid-cols-3 grid-rows-2 gap-6 w-full h-[calc(100vh-14rem)] min-h-[400px]">
-                            <MediaHubTile className="col-span-2 row-span-2" />
-                            <ProfessionalTile className="col-span-1 row-span-1" />
-                            <SocialsTile className="col-span-1 row-span-1" />
+                {/* Page 2: Discover Section — glassmorphic widgets on dotted bg */}
+                <section className="w-full h-screen relative flex z-10 shrink-0 overflow-hidden pointer-events-auto" style={{ background: '#fafafa', backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
+                    {/* "Discover" label top-right */}
+                    <div className="absolute top-5 right-8 z-20 pointer-events-none">
+                        <p className="text-xs uppercase tracking-[0.2em] text-slate-400 font-medium">Discover</p>
+                    </div>
+
+                    {/* Left: large media widget */}
+                    <div className="flex-[6] min-w-0 p-6 pr-3 flex items-stretch">
+                        <div className="w-full h-full rounded-3xl overflow-hidden border border-white/60 shadow-[0_8px_40px_rgba(0,0,0,0.1)]"
+                            style={{ background: 'rgba(255,255,255,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)' }}>
+                            <MediaSection className="w-full h-full" />
                         </div>
                     </div>
-                </section>
 
-                {/* Page 3: Mobile Bento 1 - Media Hub */}
-                <section className="w-full h-[100svh] relative flex lg:hidden flex-col justify-center pt-24 pb-32 bg-gradient-to-br from-slate-200 via-slate-100 to-slate-200 z-10 px-6 pointer-events-auto shrink-0 overflow-hidden">
-                    <div className="w-full h-full flex flex-col">
-                        <h2 className="text-3xl text-center font-ultra-thin mb-6 shrink-0 z-20">Media <strong className="font-heavy">Hub</strong></h2>
-                        <MediaHubTile className="flex-grow min-h-0 w-full z-10" />
-                    </div>
-                </section>
-
-                {/* Page 4: Mobile Bento 2 - Pro & Socials */}
-                <section className="w-full h-[100svh] relative flex lg:hidden flex-col justify-center pt-24 pb-32 bg-gradient-to-br from-slate-200 via-slate-100 to-slate-200 z-10 px-6 pointer-events-auto shrink-0 overflow-hidden">
-                    <div className="w-full h-full flex flex-col gap-6 relative z-10">
-                        <ProfessionalTile className="flex-[3] min-h-0 w-full" />
-                        <SocialsTile className="flex-[2] min-h-0 w-full" />
+                    {/* Right: two stacked glass widgets */}
+                    <div className="flex-[4] min-w-0 p-6 pl-3 flex flex-col gap-4">
+                        {/* Top-right: About & Contact */}
+                        <div className="flex-1 min-h-0 rounded-3xl overflow-hidden border border-white/60 shadow-[0_8px_40px_rgba(0,0,0,0.08)]"
+                            style={{ background: 'rgba(255,255,255,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)' }}>
+                            <ConnectSection className="w-full h-full" />
+                        </div>
+                        {/* Bottom-right: Experience & Projects */}
+                        <div className="flex-1 min-h-0 rounded-3xl overflow-hidden border border-white/60 shadow-[0_8px_40px_rgba(0,0,0,0.08)]"
+                            style={{ background: 'rgba(255,255,255,0.55)', backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)' }}>
+                            <ProfessionalSection className="w-full h-full" />
+                        </div>
                     </div>
                 </section>
             </motion.div>

@@ -49,8 +49,17 @@ export const DynamicIsland = ({ currentPath }) => {
     const showLinks = phase === 'links';
     const visible = phase !== 'hidden';
 
-    // Glass style as a plain object — applied once, never changes
-    const glassStyle = {
+    // Light pages need dark nav; hero + video pages are dark
+    const isLightPage = ['/', '/about'].indexOf(currentPath) === -1 && !currentPath.startsWith('/photography');
+
+    // Glass style adapts per page type
+    const glassStyle = isLightPage ? {
+        background: 'rgba(248, 250, 252, 0.92)',
+        backdropFilter: 'blur(20px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+        border: '1px solid rgba(0,0,0,0.08)',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9)',
+    } : {
         background: 'rgba(255, 255, 255, 0.1)',
         backdropFilter: 'blur(20px) saturate(180%)',
         WebkitBackdropFilter: 'blur(20px) saturate(180%)',
@@ -103,8 +112,8 @@ export const DynamicIsland = ({ currentPath }) => {
                                         key={link.label}
                                         href={link.href}
                                         className={`px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors duration-150 ${isActive(link.href)
-                                            ? 'bg-white/20 text-white'
-                                            : 'text-white/60 hover:text-white hover:bg-white/10'
+                                                ? isLightPage ? 'bg-slate-900/10 text-slate-900' : 'bg-white/20 text-white'
+                                                : isLightPage ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-900/5' : 'text-white/60 hover:text-white hover:bg-white/10'
                                             }`}
                                     >
                                         {link.label}
@@ -121,9 +130,9 @@ export const DynamicIsland = ({ currentPath }) => {
                                     pointerEvents: showLinks ? 'none' : 'auto',
                                 }}
                             >
-                                <span className="w-1.5 h-1.5 rounded-full bg-white/50 block" />
-                                <span className="text-white/70 text-xs font-medium tracking-widest uppercase">apilkc</span>
-                                <span className="w-1.5 h-1.5 rounded-full bg-white/50 block" />
+                                <span className="w-1.5 h-1.5 rounded-full block" style={{ background: isLightPage ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)' }} />
+                                <span className={`text-xs font-medium tracking-widest uppercase ${isLightPage ? 'text-slate-600' : 'text-white/70'}`}>apilkc</span>
+                                <span className="w-1.5 h-1.5 rounded-full block" style={{ background: isLightPage ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)' }} />
                             </div>
                         </div>
                     </motion.div>
