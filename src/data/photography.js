@@ -3,6 +3,9 @@
 // which we map to public-relative paths (e.g. `Sports/Baseball/IMG_1.jpg`) for serving.
 const imagesRaw = import.meta.glob('/public/**/*.{jpg,jpeg,png,webp}');
 
+// Pre-compute a set of all webp files to easily check for optimized duplicates
+const webpFiles = new Set(Object.keys(imagesRaw).filter(p => p.toLowerCase().endsWith('.webp')));
+
 // Define our top-level categories metadata and their intended order
 const categoryMetadata = {
     "Sports": { id: "sports", title: "Sports", subtitle: "Action & Emotion" },
@@ -15,7 +18,15 @@ const categoryMetadata = {
 const rawData = {};
 
 Object.keys(imagesRaw).forEach(assetPath => {
-    // Strip "/public/" from the key to get the public-relative path, e.g. "Sports/Baseball/IMG_1.jpg"
+    // Deduplication: If this is a jpg/png, and a optimized webp exists, skip the raw file
+    if (/\.(jpg|jpeg|png)$/i.test(assetPath)) {
+        const webpPath = assetPath.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+        if (webpFiles.has(webpPath)) {
+            return; // Skip this file, we will render the webp version instead
+        }
+    }
+
+    // Strip "/public/" from the key to get the public-relative path, e.g. "Sports/Baseball/IMG_1.webp"
     const cleanedPath = assetPath.replace('/public/', '');
     const pathParts = cleanedPath.split('/');
 

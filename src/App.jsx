@@ -9,6 +9,7 @@ const PhotographyGallery = React.lazy(() => import('./pages/Photography').then(m
 const Videos = React.lazy(() => import('./pages/Videos').then(module => ({ default: module.Videos })));
 const Projects = React.lazy(() => import('./pages/Projects').then(module => ({ default: module.Projects })));
 const Experience = React.lazy(() => import('./pages/Experience').then(module => ({ default: module.Experience })));
+const Awards = React.lazy(() => import('./pages/Awards').then(module => ({ default: module.Awards })));
 const Contact = React.lazy(() => import('./pages/Contact').then(module => ({ default: module.Contact })));
 
 
@@ -68,6 +69,11 @@ const App = () => {
             {currentPath === '/experience' && (
               <motion.div key="experience" initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: -10 }} transition={{ duration: 0.4 }}>
                 <Experience />
+              </motion.div>
+            )}
+            {currentPath === '/awards' && (
+              <motion.div key="awards" initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: -10 }} transition={{ duration: 0.4 }}>
+                <Awards />
               </motion.div>
             )}
             {currentPath === '/contact' && (

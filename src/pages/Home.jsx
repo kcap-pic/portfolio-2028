@@ -27,6 +27,58 @@ const TypewriterText = ({ text, delay = 0 }) => {
     );
 };
 
+const TypewriterLoop = ({ words, delayStart = 0, typingSpeed = 100, deletingSpeed = 50, pauseDelay = 2000 }) => {
+    const [currentWordIndex, setCurrentWordIndex] = useState(0);
+    const [currentText, setCurrentText] = useState('');
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [hasStarted, setHasStarted] = useState(false);
+
+    useEffect(() => {
+        const startTimer = setTimeout(() => setHasStarted(true), delayStart * 1000);
+        return () => clearTimeout(startTimer);
+    }, [delayStart]);
+
+    useEffect(() => {
+        if (!hasStarted) return;
+
+        const fullWord = words[currentWordIndex];
+        let timer;
+
+        if (isDeleting) {
+            timer = setTimeout(() => {
+                setCurrentText(fullWord.substring(0, currentText.length - 1));
+                if (currentText.length === 0) {
+                    setIsDeleting(false);
+                    setCurrentWordIndex((prev) => (prev + 1) % words.length);
+                }
+            }, deletingSpeed);
+        } else {
+            timer = setTimeout(() => {
+                setCurrentText(fullWord.substring(0, currentText.length + 1));
+                if (currentText.length === fullWord.length) {
+                    timer = setTimeout(() => setIsDeleting(true), pauseDelay);
+                }
+            }, typingSpeed);
+        }
+
+        return () => clearTimeout(timer);
+    }, [currentText, isDeleting, currentWordIndex, words, typingSpeed, deletingSpeed, pauseDelay, hasStarted]);
+
+    const longestWord = [...words].sort((a, b) => b.length - a.length)[0];
+
+    return (
+        <span className="inline-flex relative font-bold drop-shadow-[0_0_25px_rgba(255,255,255,0.6)]">
+            {/* The hidden text creates the full width */}
+            <span className="whitespace-nowrap opacity-0 pointer-events-none select-none block px-1">{longestWord}</span>
+            {/* Right-aligned absolute positioning so text grows out to the LEFT */}
+            <span className="absolute right-0 top-0 whitespace-nowrap flex items-center text-transparent bg-clip-text bg-gradient-to-l from-white via-white/90 to-white/60">
+                {currentText}
+                <span className="animate-[pulse_1s_ease-in-out_infinite] font-light text-white/50 text-[1.1em] align-baseline ml-1 mb-1 relative top-[1px]">|</span>
+            </span>
+        </span>
+    );
+};
+
 export const Home = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const isScrolling = useRef(false);
@@ -111,47 +163,39 @@ export const Home = () => {
                                 </StaggerItem>
                             </StaggerContainer>
 
-                            <StaggerContainer className="w-full h-full flex flex-col justify-center items-end text-right relative z-10 pointer-events-none mt-8 lg:mt-0 lg:pr-8 xl:pr-12 min-w-0">
+                            <StaggerContainer className="w-full h-full flex flex-col justify-center items-end text-right relative z-10 pointer-events-none mt-0 lg:mt-[-5vh] xl:mt-[-10vh] lg:pr-8 xl:pr-12 min-w-0">
                                 <StaggerItem className="w-full flex justify-end min-w-0">
                                     <div className="mb-4 md:mb-6 flex flex-col items-end w-full lg:max-w-[50rem] xl:max-w-[56rem] 2xl:max-w-[64rem]">
-                                        <h1 className="text-[8vw] sm:text-4xl md:text-5xl lg:text-[2.25vw] xl:text-[2.75vw] 2xl:text-[3.25vw] font-heavy tracking-normal 2xl:tracking-tighter mb-2 md:mb-4 leading-[0.85] text-white/50 drop-shadow-2xl mix-blend-plus-lighter w-full">
-                                            <div className="mb-1"><TypewriterText text="Award-" delay={0.2} /></div>
-                                            <div><TypewriterText text="Winning" delay={0.6} /></div>
+                                        <h1 className="text-[10vw] sm:text-[4rem] md:text-[5.5rem] lg:text-[4.5vw] xl:text-[5vw] 2xl:text-[5.5vw] font-heavy tracking-normal 2xl:tracking-tighter mb-1 md:mb-2 leading-[0.85] text-white/60 drop-shadow-2xl mix-blend-plus-lighter w-full">
+                                            <div className="mb-0.5 md:mb-1"><TypewriterText text="APIL KC |" delay={0.2} /></div>
                                         </h1>
-                                        <h2 className="text-[9.5vw] sm:text-[3.25rem] md:text-[4.5rem] lg:text-[3.5vw] xl:text-[4vw] 2xl:text-[4.25vw] font-heavy tracking-normal xl:tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 drop-shadow-[0_0_40px_rgba(255,255,255,0.2)] mt-1 md:mt-2 leading-[0.9] w-full break-words">
-                                            <div className="mb-1"><TypewriterText text="Visual" delay={1.0} /></div>
-                                            <div><TypewriterText text="Storyteller" delay={1.4} /></div>
-                                        </h2>
-                                        <div className="w-full block text-right whitespace-nowrap mt-3 text-white/70 font-ultra-thin uppercase tracking-[0.1em] xl:tracking-widest text-[9px] sm:text-[10px] lg:text-[8px] xl:text-[10px] 2xl:text-sm drop-shadow-md leading-[1.6]">
-                                            <span className="inline-block"><TypewriterText text="TECHNICAL" delay={1.8} /></span>
-                                            {" "}
-                                            <span className="inline-block"><TypewriterText text="BACKGROUND" delay={1.9} /></span>
-                                            {" "}
-                                            <span className="inline-block"><TypewriterText text="IN" delay={2.0} /></span>
-                                            {" "}
-                                            <strong className="font-medium text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] inline-block"><TypewriterText text="COMPUTER SCIENCE" delay={2.1} /></strong>
-                                            {" "}
-                                            <span className="inline-block"><TypewriterText text="AND" delay={2.2} /></span>
-                                            {" "}
-                                            <strong className="font-medium text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] inline-block"><TypewriterText text="ANALYTICS" delay={2.3} /></strong>
+
+                                        <div className="w-full flex flex-col items-end text-right">
+                                            <h2 className="text-[6vw] sm:text-[2.5rem] md:text-[3rem] lg:text-[2.5vw] xl:text-[3vw] 2xl:text-[3.5vw] font-heavy tracking-normal xl:tracking-tighter uppercase text-white/40 mb-1 lg:mb-2 leading-none mix-blend-plus-lighter drop-shadow-md pr-[0.3em] md:pr-[0.4em]">
+                                                <TypewriterText text="I AM A" delay={0.8} />
+                                            </h2>
+
+                                            <h3 className="text-[9.5vw] sm:text-[3.25rem] md:text-[4.5rem] lg:text-[3.5vw] xl:text-[4vw] 2xl:text-[4.25vw] font-heavy tracking-normal xl:tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 drop-shadow-[0_0_40px_rgba(255,255,255,0.2)] leading-[0.9] mt-1">
+                                                <TypewriterLoop words={['STORYTELLER', 'PHOTOGRAPHER', 'MEDIA ANALYST', 'WEB DESIGNER', 'DIGITAL STRATEGIST']} delayStart={1.4} />
+                                            </h3>
+                                        </div>
+                                        <div className="flex items-center justify-end w-full mt-6 md:mt-12 lg:mt-16 gap-4 md:gap-6 w-full opacity-80 mix-blend-plus-lighter">
+                                            <motion.div
+                                                initial={{ width: 0, opacity: 0 }}
+                                                animate={{ width: "min(30vw, 200px)", opacity: 1 }}
+                                                transition={{ duration: 1.5, delay: 2.2, ease: "easeOut" }}
+                                                className="h-[1px] bg-gradient-to-l from-white/70 to-transparent"
+                                            />
+                                            <div className="text-right whitespace-nowrap text-white/70 font-light uppercase tracking-[0.1em] lg:tracking-[0.15em] text-[8px] sm:text-[10px] md:text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-sm drop-shadow-lg leading-none">
+                                                <span className="inline-block"><TypewriterText text="INTEGRATING CREATIVE MEDIA WITH" delay={1.8} /></span>
+                                                {" "}
+                                                <strong className="font-semibold text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.9)] inline-block"><TypewriterText text="ANALYTICAL THINKING." delay={2.2} /></strong>
+                                            </div>
                                         </div>
                                     </div>
                                 </StaggerItem>
 
-                                <StaggerItem>
-                                    <div className="mb-4 md:mb-8 mt-4 md:mt-6 px-4 md:px-0 md:pr-4 border-r-4 md:border-r-8 border-white/20 w-full flex flex-col items-end">
-                                        <p className="text-lg md:text-xl xl:text-2xl text-white/70 font-heavy uppercase tracking-normal xl:tracking-tighter leading-tight drop-shadow-md text-right">
-                                            <span className="inline-block mr-1 md:mr-2"><TypewriterText text="Recognized" delay={2.5} /></span>
-                                            <span className="inline-block"><TypewriterText text="with" delay={2.7} /></span>
-                                            <br className="hidden md:block" />
-                                            <strong className="text-[4rem] md:text-[4.5rem] lg:text-[3.5rem] xl:text-[4.5rem] 2xl:text-[5rem] text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] block my-1">
-                                                <AnimatedCounter to={6} duration={2.5} delay={2.5} />
-                                            </strong>
-                                            <span className="inline-block mr-1 md:mr-2"><TypewriterText text="Regional" delay={2.9} /></span>
-                                            <span className="inline-block"><TypewriterText text="Awards" delay={3.1} /></span>
-                                        </p>
-                                    </div>
-                                </StaggerItem>
+
                             </StaggerContainer>
                         </div>
                     </div>
