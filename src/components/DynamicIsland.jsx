@@ -1,24 +1,34 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// All images used in previews — preloaded on mount so they're cached before hover
+const PRELOAD_IMAGES = [
+    '/Sports/Soccer/IMG_7559.jpg',
+    '/Sports/Basketball/206-IMG_0057.jpg',
+    '/Sports/Football/75-IMG_0074.jpg',
+    '/Events/Cover.jpg',
+    '/thumbnails/01.webp',
+    '/thumbnails/02.webp',
+];
+
 // --- Mini Previews ---
 
 const PhotographyMiniPreview = () => (
     <div className="w-[18rem] h-[12rem] rounded-[1.2rem] bg-[#fafafa] border border-slate-200 p-2.5 flex flex-col gap-1.5 relative overflow-hidden" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '8px 8px' }}>
         <div className="flex-[2] flex gap-1.5 w-full min-h-0">
             <div className="flex-[3] bg-white border border-white/40 rounded-lg overflow-hidden relative shadow-sm">
-                <img src="/Sports/Soccer/IMG_7559.jpg" className="absolute inset-0 w-full h-full object-cover" alt="" />
+                <img src="/Sports/Soccer/IMG_7559.jpg" className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="sync" alt="" />
             </div>
             <div className="flex-[2] bg-white border border-white/40 rounded-lg overflow-hidden relative shadow-sm">
-                <img src="/Sports/Basketball/206-IMG_0057.jpg" className="absolute inset-0 w-full h-full object-cover" alt="" />
+                <img src="/Sports/Basketball/206-IMG_0057.jpg" className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="sync" alt="" />
             </div>
         </div>
         <div className="flex-[2] flex gap-1.5 w-full min-h-0">
             <div className="flex-[2] bg-white border border-white/40 rounded-lg overflow-hidden relative shadow-sm">
-                <img src="/Sports/Football/75-IMG_0074.jpg" className="absolute inset-0 w-full h-full object-cover" alt="" />
+                <img src="/Sports/Football/75-IMG_0074.jpg" className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="sync" alt="" />
             </div>
             <div className="flex-[3] bg-white border border-white/40 rounded-lg overflow-hidden relative shadow-sm">
-                <img src="/Events/Cover.jpg" className="absolute inset-0 w-full h-full object-cover" alt="" />
+                <img src="/Events/Cover.jpg" className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="sync" alt="" />
             </div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#fafafa] via-white/40 to-transparent pointer-events-none"></div>
@@ -33,11 +43,11 @@ const VideosMiniPreview = () => (
     <div className="w-[18rem] h-[12rem] rounded-[1.2rem] bg-[#fafafa] border border-slate-200 p-2.5 flex flex-col gap-1.5 relative overflow-hidden" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '8px 8px' }}>
         <div className="flex-[3] flex gap-1.5 w-full min-h-0">
             <div className="flex-[2] bg-slate-800 border border-white/10 rounded-lg overflow-hidden relative shadow-sm">
-                <img src="/thumbnails/01.webp" className="absolute inset-0 w-full h-full object-cover opacity-80" alt="" />
+                <img src="/thumbnails/01.webp" className="absolute inset-0 w-full h-full object-cover opacity-80" loading="eager" decoding="sync" alt="" />
                 <div className="absolute inset-0 flex items-center justify-center"><div className="w-5 h-5 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center"><div className="w-0 h-0 border-t-[3px] border-t-transparent border-l-[5px] border-l-white border-b-[3px] border-b-transparent ml-0.5"></div></div></div>
             </div>
             <div className="flex-[3] bg-slate-800 border border-white/10 rounded-lg overflow-hidden relative shadow-sm">
-                <img src="/thumbnails/02.webp" className="absolute inset-0 w-full h-full object-cover opacity-80" alt="" />
+                <img src="/thumbnails/02.webp" className="absolute inset-0 w-full h-full object-cover opacity-80" loading="eager" decoding="sync" alt="" />
                 <div className="absolute inset-0 flex items-center justify-center"><div className="w-6 h-6 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center"><div className="w-0 h-0 border-t-[3px] border-t-transparent border-l-[6px] border-l-white border-b-[3px] border-b-transparent ml-0.5"></div></div></div>
             </div>
         </div>
@@ -87,13 +97,13 @@ const AwardsMiniPreview = () => (
 );
 
 const ProjectsMiniPreview = () => (
-    <div className="w-[18rem] h-[12rem] rounded-[1.2rem] bg-slate-900 border border-slate-800 p-4 flex flex-col items-center justify-center relative overflow-hidden shadow-inner">
-        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at center, #38bdf8 1px, transparent 1px)', backgroundSize: '12px 12px' }}></div>
-        <div className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center mb-2 shadow-lg z-10">
-            <span className="text-white font-heavy text-lg">&lt;/&gt;</span>
+    <div className="w-[18rem] h-[12rem] rounded-[1.2rem] bg-slate-50 border border-slate-200 p-4 flex flex-col items-center justify-center relative overflow-hidden shadow-inner cursor-not-allowed">
+        <div className="absolute inset-0 opacity-40" style={{ backgroundImage: 'radial-gradient(circle at center, #cbd5e1 1px, transparent 1px)', backgroundSize: '12px 12px' }}></div>
+        <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center mb-2 shadow-sm z-10">
+            <span className="text-slate-700 font-heavy text-lg">&lt;/&gt;</span>
         </div>
-        <h3 className="text-sm font-heavy tracking-tight text-white z-10">Projects</h3>
-        <p className="text-[8px] font-medium text-slate-400 uppercase tracking-widest mt-0.5 z-10">Development Portfolio</p>
+        <h3 className="text-sm font-heavy tracking-tight text-slate-900 z-10">Projects</h3>
+        <p className="text-[10px] font-heavy text-slate-500 uppercase tracking-widest mt-1 z-10 bg-slate-200/50 px-2 py-0.5 rounded">Coming Soon</p>
     </div>
 );
 
@@ -117,16 +127,43 @@ const AboutMiniPreview = () => (
     </div>
 );
 
+// Map linkId → preview component (rendered once per link in the DOM, shown/hidden via CSS)
+const PREVIEW_MAP = {
+    photo: <PhotographyMiniPreview />,
+    video: <VideosMiniPreview />,
+    discover: <AboutMiniPreview />,
+    experience: <ExperienceMiniPreview />,
+    contact: <ContactMiniPreview />,
+    project: <ProjectsMiniPreview />,
+};
+
 // --- Dynamic Island Main Component ---
 
 export const DynamicIsland = ({ currentPath }) => {
-    const [phase, setPhase] = useState('links');
+    const [phase, setPhase] = useState(currentPath === '/' ? 'links' : 'logo');
     const [hoveredLink, setHoveredLink] = useState(null);
     const [isShining, setIsShining] = useState(false);
     const [isBouncing, setIsBouncing] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const hideTimer = useRef(null);
     const phaseTimer = useRef(null);
     const hoverTimer = useRef(null);
+
+    // Mobile detection
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Preload all preview images on mount so they're cached before first hover
+    useEffect(() => {
+        PRELOAD_IMAGES.forEach((src) => {
+            const img = new Image();
+            img.src = src;
+        });
+    }, []);
 
     // Initial and periodic shine effect
     useEffect(() => {
@@ -136,7 +173,7 @@ export const DynamicIsland = ({ currentPath }) => {
         };
 
         const initialTimer = setTimeout(triggerShine, 800);
-        const intervalTimer = setInterval(triggerShine, 15000); // Shine every 15s
+        const intervalTimer = setInterval(triggerShine, 15000);
 
         return () => {
             clearTimeout(initialTimer);
@@ -160,16 +197,16 @@ export const DynamicIsland = ({ currentPath }) => {
                         setIsBouncing(true);
                         setTimeout(() => setIsBouncing(false), 800);
                     };
-                    triggerBounce(); // initial bounce
-                    bounceInterval = setInterval(triggerBounce, 4000); // repeating bounce
-                }, 8000); // start bouncing after 8s of idle
+                    triggerBounce();
+                    bounceInterval = setInterval(triggerBounce, 4000);
+                }, 8000);
             }
         };
 
         window.addEventListener('mousemove', handleActivity);
         window.addEventListener('keydown', handleActivity);
         window.addEventListener('touchstart', handleActivity);
-        handleActivity(); // init
+        handleActivity();
 
         return () => {
             window.removeEventListener('mousemove', handleActivity);
@@ -184,63 +221,80 @@ export const DynamicIsland = ({ currentPath }) => {
         { id: 'home', label: 'Home', href: '#/' },
         { id: 'photo', label: 'Photo', href: '#/photography' },
         { id: 'video', label: 'Video', href: '#/videos' },
-        { id: 'experience', label: 'Experience', href: '#/experience' },
-        { id: 'project', label: 'Project', href: '#/projects' },
-        { id: 'contact', label: 'Contact', href: '#/contact' },
-        { id: 'about', label: 'About me', href: '#/about' },
+        { id: 'discover', label: 'About', href: '#/discover' },
+        { id: 'project', label: 'Projects', href: undefined, disabled: true },
     ];
 
     const isActive = (href) => {
+        if (!href) return false;
         const path = href.replace('#', '') || '/';
         return currentPath === path;
     };
 
     // On mount: show links for 5s → collapse to logo → hide after another 2.5s (except on home)
+    // On mount: logic depends on path
     useEffect(() => {
-        phaseTimer.current = setTimeout(() => {
-            if (!hoveredLink) {
-                setPhase('logo');
-                if (currentPath !== '/') {
+        if (currentPath === '/') {
+            // Homepage: show links for 5s → collapse to logo → hide after another 2.5s
+            phaseTimer.current = setTimeout(() => {
+                if (!hoveredLink) {
+                    setPhase('logo');
                     hideTimer.current = setTimeout(() => setPhase('hidden'), 2500);
                 }
+            }, 5000);
+        } else {
+            // Subpages: start as logo, never auto-hide.
+            if (phase === 'hidden') setPhase('logo');
+
+            // If it was links (e.g. from nav), collapse to logo after 5s
+            if (phase === 'links') {
+                phaseTimer.current = setTimeout(() => {
+                    if (!hoveredLink) setPhase('logo');
+                }, 5000);
             }
-        }, 5000);
+        }
         return () => {
             clearTimeout(phaseTimer.current);
             clearTimeout(hideTimer.current);
         };
-    }, [hoveredLink, currentPath]);
+    }, [hoveredLink, currentPath, phase]);
 
     // Mouse proximity: re-show as logo when near top
     useEffect(() => {
-        const onMove = (e) => {
-            if (e.clientY < 150) {
+        const handleProximity = (clientY) => {
+            if (clientY < 100) {
                 clearTimeout(hideTimer.current);
                 if (phase === 'hidden') setPhase('logo');
-            } else {
-                if (!hoveredLink && currentPath !== '/') {
+            } else if (clientY > 200) {
+                if (!hoveredLink && currentPath === '/') {
                     clearTimeout(hideTimer.current);
                     hideTimer.current = setTimeout(() => setPhase('hidden'), 1500);
                 }
             }
         };
+
+        const onMove = (e) => handleProximity(e.clientY);
+        const onTouch = (e) => handleProximity(e.touches[0].clientY);
+
         window.addEventListener('mousemove', onMove);
-        return () => window.removeEventListener('mousemove', onMove);
+        window.addEventListener('touchstart', onTouch);
+        return () => {
+            window.removeEventListener('mousemove', onMove);
+            window.removeEventListener('touchstart', onTouch);
+        };
     }, [phase, hoveredLink, currentPath]);
 
     const showLinks = phase === 'links';
     const visible = phase !== 'hidden';
 
-    // Home and Videos are dark pages. Photography prefix (gallery) might be dark. 
-    // Experience, Awards, Projects, Contact, About, and Photo Index are light pages.
-    const darkPages = ['/', '/videos'];
-    const isLightPage = !darkPages.includes(currentPath) && !currentPath.startsWith('/photography/');
+    const darkPages = ['/'];
+    const isLightPage = currentPath !== '/';
 
     const glassStyle = isLightPage ? {
         background: 'rgba(255, 255, 255, 0.95)',
         backdropFilter: 'blur(20px) saturate(200%)',
         WebkitBackdropFilter: 'blur(20px) saturate(200%)',
-        border: '1px solid rgba(148, 163, 184, 0.4)', // slate-400 slightly transparent
+        border: '1px solid rgba(148, 163, 184, 0.4)',
         boxShadow: '0 10px 40px -10px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,1)',
     } : {
         background: 'rgba(255, 255, 255, 0.1)',
@@ -261,19 +315,6 @@ export const DynamicIsland = ({ currentPath }) => {
         }, 150);
     };
 
-    const renderHoverPreview = () => {
-        switch (hoveredLink) {
-            case 'photo': return <PhotographyMiniPreview />;
-            case 'video': return <VideosMiniPreview />;
-            case 'experience': return <ExperienceMiniPreview />;
-            case 'awards': return <AwardsMiniPreview />;
-            case 'project': return <ProjectsMiniPreview />;
-            case 'contact': return <ContactMiniPreview />;
-            case 'about': return <AboutMiniPreview />;
-            default: return null;
-        }
-    };
-
     return (
         <div className="fixed top-4 left-0 right-0 flex flex-col items-center z-[100] pointer-events-none">
             <AnimatePresence>
@@ -286,21 +327,26 @@ export const DynamicIsland = ({ currentPath }) => {
                             y: isBouncing ? [0, -14, 0, -6, 0] : 0
                         }}
                         exit={{ opacity: 0, y: -12 }}
-                        transition={{
-                            duration: isBouncing ? 0.8 : 0.3,
-                            ease: 'easeOut'
-                        }}
+                        transition={
+                            isBouncing
+                                ? { duration: 0.8, ease: 'easeOut' }
+                                : { type: 'spring', stiffness: 400, damping: 30 }
+                        }
                         style={{ willChange: 'transform, opacity' }}
                         className="relative"
                     >
                         {/* Single pill — width transitions via CSS, no re-mount */}
                         <div
-                            className="pointer-events-auto relative flex items-center justify-center rounded-full min-h-[44px]"
+                            className="pointer-events-auto relative flex items-center justify-center rounded-[2rem] min-h-[44px] sm:rounded-full"
                             style={{
                                 ...glassStyle,
-                                // Responsive width for the links depending on state
-                                width: showLinks ? '680px' : '140px',
-                                transition: 'width 0.45s cubic-bezier(0.76, 0, 0.24, 1)',
+                                width: showLinks 
+                                    ? (isMobile ? '180px' : '680px') 
+                                    : (isMobile ? '120px' : '140px'),
+                                height: showLinks && isMobile ? 'auto' : '44px',
+                                minHeight: '44px',
+                                transition: 'width 0.45s cubic-bezier(0.76, 0, 0.24, 1), height 0.3s ease, border-radius 0.3s ease',
+                                padding: showLinks && isMobile ? '16px 8px' : '0 8px',
                             }}
                             onMouseEnter={() => {
                                 clearTimeout(hideTimer.current);
@@ -324,9 +370,9 @@ export const DynamicIsland = ({ currentPath }) => {
                                 <AnimatePresence>
                                     {isShining && visible && (
                                         <motion.div
-                                            initial={{ x: '-150%' }}
-                                            animate={{ x: '500%' }}
-                                            transition={{ duration: 1.2, ease: "easeInOut" }}
+                                            initial={{ x: '-120px' }}
+                                            animate={{ x: '820px' }}
+                                            transition={{ duration: 1.3, ease: "easeInOut" }}
                                             className="absolute top-0 bottom-0 w-24 bg-gradient-to-r from-transparent via-white/80 to-transparent -skew-x-12"
                                         />
                                     )}
@@ -335,45 +381,76 @@ export const DynamicIsland = ({ currentPath }) => {
 
                             {/* Nav links row */}
                             <div
-                                className="absolute inset-0 flex items-center justify-center gap-1 px-3"
+                                className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${isMobile ? 'flex-col gap-0 relative h-auto py-2' : 'gap-1 px-3'}`}
                                 style={{
                                     opacity: showLinks ? 1 : 0,
-                                    transition: 'opacity 0.2s ease',
                                     pointerEvents: showLinks ? 'auto' : 'none',
+                                    position: isMobile && showLinks ? 'relative' : 'absolute',
                                 }}
                             >
                                 {links.map((link) => (
                                     <div key={link.id} className="relative">
                                         <a
-                                            href={link.href}
+                                            href={link.href || undefined}
                                             onMouseEnter={() => handleMouseEnter(link.id)}
                                             onMouseLeave={handleMouseLeave}
-                                            className={`px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors duration-150 block ${isActive(link.href)
-                                                ? isLightPage ? 'bg-slate-900/10 text-slate-900' : 'bg-white/20 text-white'
-                                                : isLightPage ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-900/5' : 'text-white/60 hover:text-white hover:bg-white/10'
-                                                }`}
-                                        >
+                                            onClick={(e) => {
+                                                if (link.disabled) {
+                                                    e.preventDefault();
+                                                    return;
+                                                }
+                                                if (isMobile) {
+                                                    setPhase('hidden');
+                                                    clearTimeout(hideTimer.current);
+                                                    clearTimeout(phaseTimer.current);
+                                                }
+                                            }}
+                                            className={`px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors duration-150 block ${
+                                                link.disabled
+                                                    ? isLightPage ? 'text-slate-400 cursor-not-allowed' : 'text-white/30 cursor-not-allowed'
+                                                    : isActive(link.href)
+                                                        ? isLightPage ? 'bg-slate-900/10 text-slate-900 cursor-pointer' : 'bg-white/20 text-white cursor-pointer'
+                                            : isLightPage ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-900/5 cursor-pointer' : 'text-white/60 hover:text-white hover:bg-white/10 cursor-pointer'
+                                        } ${isMobile ? 'w-full text-center py-2 px-4' : 'px-3 py-1.5'}`}
+                                    >
                                             {link.label}
                                         </a>
 
-                                        <AnimatePresence>
-                                            {hoveredLink === link.id && link.id !== 'home' && showLinks && (
-                                                <motion.div
-                                                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                                    transition={{ duration: 0.15, ease: "easeOut" }}
-                                                    className="absolute top-full left-1/2 -translate-x-1/2 pt-4 pointer-events-auto"
-                                                    onMouseEnter={() => { clearTimeout(hoverTimer.current); }}
-                                                    onMouseLeave={handleMouseLeave}
+                                        {/* Preview card: always in DOM, shown/hidden via CSS to avoid remount flicker. Disabled on mobile for layout safety. */}
+                                        {!isMobile && link.id !== 'home' && PREVIEW_MAP[link.id] && (
+                                            <div
+                                                className="absolute top-full pt-4 pointer-events-auto"
+                                                style={{
+                                                    width: '18rem',
+                                                    left: '50%',
+                                                    opacity: hoveredLink === link.id && showLinks ? 1 : 0,
+                                                    transform: `translateX(-50%) translateY(${hoveredLink === link.id && showLinks ? '0px' : '8px'})`,
+                                                    transition: 'opacity 0.18s ease, transform 0.18s ease',
+                                                    pointerEvents: hoveredLink === link.id && showLinks ? 'auto' : 'none',
+                                                    willChange: 'opacity, transform',
+                                                }}
+                                                onMouseEnter={() => { clearTimeout(hoverTimer.current); setHoveredLink(link.id); }}
+                                                onMouseLeave={handleMouseLeave}
+                                            >
+                                                {/* Clean SVG triangle pointer */}
+                                                <svg
+                                                    width="20" height="10"
+                                                    viewBox="0 0 20 10"
+                                                    className="absolute left-[50%] -translate-x-1/2 z-20"
+                                                    style={{
+                                                        top: '6px',
+                                                        opacity: hoveredLink === link.id && showLinks ? 1 : 0,
+                                                        transition: 'opacity 0.18s ease',
+                                                        filter: 'drop-shadow(0 -1px 0px rgba(148,163,184,0.5))',
+                                                    }}
                                                 >
-                                                    <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 bg-[#fafafa] border-t border-l border-slate-200"></div>
-                                                    <div className="relative z-10 drop-shadow-2xl">
-                                                        {renderHoverPreview()}
-                                                    </div>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
+                                                    <path d="M0 10 L10 0 L20 10 Z" fill="#fafafa" />
+                                                </svg>
+                                                <div className="relative z-10 drop-shadow-2xl">
+                                                    {PREVIEW_MAP[link.id]}
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
                                 ))}
                             </div>
@@ -386,9 +463,10 @@ export const DynamicIsland = ({ currentPath }) => {
                                     transition: 'opacity 0.2s ease',
                                     pointerEvents: showLinks ? 'none' : 'auto',
                                 }}
+                                onMouseEnter={() => setPhase('links')}
                             >
-                                <span className="w-1.5 h-1.5 rounded-full block" style={{ background: isLightPage ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)' }} />
-                                <span className={`text-xs font-medium tracking-widest uppercase ${isLightPage ? 'text-slate-600' : 'text-white/70'}`}>apilkc</span>
+                                 <span className="w-1.5 h-1.5 rounded-full block" style={{ background: isLightPage ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)' }} />
+                                <span className={`relative z-10 transition-transform duration-300 hover:scale-110 cursor-pointer ${isLightPage ? 'text-slate-900' : 'text-white'} font-bold whitespace-nowrap ${isMobile ? 'text-xs' : 'text-sm'} ${isShining ? 'drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]' : ''}`}>MENU</span>
                                 <span className="w-1.5 h-1.5 rounded-full block" style={{ background: isLightPage ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)' }} />
                             </div>
                         </div>

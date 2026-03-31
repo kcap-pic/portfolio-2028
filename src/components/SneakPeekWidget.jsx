@@ -181,10 +181,10 @@ export const SneakPeekWidget = () => {
                 <motion.a
                     key={currentIndex}
                     href={pages[currentIndex].url}
-                    initial={{ opacity: 0, x: 40, filter: "blur(8px)" }}
-                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, x: -40, filter: "blur(8px)" }}
-                    transition={{ type: "spring", stiffness: 220, damping: 28 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.35, ease: 'easeInOut' }}
                     className="absolute inset-0 block w-full h-full group hover:scale-[1.02] transition-transform duration-500"
                     style={{ willChange: 'transform' }}
                     draggable={false}
@@ -193,13 +193,13 @@ export const SneakPeekWidget = () => {
                 </motion.a>
             </AnimatePresence>
 
-            {/* Pagination dots */}
-            <div className="absolute -bottom-6 left-0 right-0 flex justify-center gap-1.5">
+            {/* Pagination dots - inside the card */}
+            <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-30 pointer-events-auto">
                 {pages.map((_, i) => (
                     <button
                         key={i}
                         onClick={(e) => { e.preventDefault(); setCurrentIndex(i); resetAuto(); }}
-                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-white w-4' : 'bg-white/40'}`}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-slate-600 w-4' : 'bg-slate-300 w-1.5'}`}
                     />
                 ))}
             </div>

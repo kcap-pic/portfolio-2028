@@ -20,11 +20,12 @@
   width: 100vw;
   height: 100vh;
   /* Lighter gradient for brighter photo, bottom gets slightly darker to fade into next section */
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(20, 20, 25, 0.7) 100%), url('/IMG_2597.jpg');
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(20, 20, 25, 0.7) 100%), url('/IMG_2597.webp');
   background-size: cover;
   /* Pin to the right so the ball is always in focus, without leaving a strange gap */
   background-position: right center;
   z-index: -10;
+  will-change: transform;
 }
 
 html {

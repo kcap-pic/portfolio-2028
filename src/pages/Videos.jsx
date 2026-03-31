@@ -61,7 +61,7 @@ const VideoCard = ({ video, index, onClick, hoveredId, setHoveredId }) => {
     }, []);
 
     // If mobile, zero out the speed so it just scrolls natively without parallax stagger
-    const speed = isMobile ? 0 : (colIndex === 0 ? 0.04 : colIndex === 1 ? -0.02 : 0.05);
+    const speed = isMobile ? 0 : (colIndex === 0 ? 0.015 : colIndex === 1 ? -0.01 : 0.02);
     const rawY = useTransform(scrollY, [0, 3000], [0, speed * 3000]);
     const springY = useSpring(rawY, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
@@ -71,18 +71,22 @@ const VideoCard = ({ video, index, onClick, hoveredId, setHoveredId }) => {
                 <motion.div
                     animate={{ y: isMobile ? 0 : [0, -4, 0] }} // Disable floating on mobile
                     transition={{ duration: 4 + colIndex, repeat: Infinity, ease: "easeInOut" }}
-                    onClick={() => onClick(video)}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    // Changed width sizing: on mobile let it be full width with some margin, on tablet/desktop keep the custom width sizing
-                    className={`relative group cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.165,0.84,0.44,1)] ${isLandscape ? 'w-full md:w-[95%] lg:w-[105%] xl:w-[110%]' : 'w-[90%] md:w-[85%] mx-auto'} rounded-2xl md:rounded-[1rem] overflow-hidden bg-black/5 shadow-2xl border border-slate-900/5`}
-                    style={{
-                        scale: isMobile ? 1 : (isHovered ? 1.05 : isDimmed ? 0.98 : 1), // Disable hover scale on mobile
-                        opacity: isMobile ? 1 : (isDimmed ? 0.7 : 1),
-                        filter: isMobile ? 'blur(0px)' : (isDimmed ? 'blur(2px)' : 'blur(0px)'),
-                        zIndex: isHovered ? 40 : 10,
-                    }}
+                    className="w-full h-full flex items-center justify-center"
                 >
+                    <motion.div
+                        layoutId={`video-container-${video.id}`}
+                        onClick={() => onClick(video)}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        // Changed width sizing: on mobile let it be full width with some margin, on tablet/desktop keep the custom width sizing
+                        className={`relative group cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.165,0.84,0.44,1)] ${isLandscape ? 'w-full md:w-[95%] lg:w-[105%] xl:w-[110%]' : 'w-[90%] md:w-[85%] mx-auto'} rounded-2xl md:rounded-[1rem] overflow-hidden bg-black/5 shadow-2xl border border-slate-900/5`}
+                        style={{
+                            scale: isMobile ? 1 : (isHovered ? 1.05 : isDimmed ? 0.98 : 1), // Disable hover scale on mobile
+                            opacity: isMobile ? 1 : (isDimmed ? 0.7 : 1),
+                            filter: isMobile ? 'blur(0px)' : (isDimmed ? 'blur(2px)' : 'blur(0px)'),
+                            zIndex: isHovered ? 40 : 10,
+                        }}
+                    >
                     {/* Size Container forcing exact aspect ratios to eliminate black bars via object-cover. */}
                     <div className="relative w-full h-auto bg-black flex items-center justify-center overflow-hidden">
 
@@ -100,7 +104,7 @@ const VideoCard = ({ video, index, onClick, hoveredId, setHoveredId }) => {
                             muted={isMuted}
                             playsInline
                             onLoadedMetadata={(e) => {
-                                const isVerticalId = ['01', '04', '07', '10'].includes(video.id);
+                                const isVerticalId = ['01', '04', '07', '10', '12', '13'].includes(video.id);
                                 setIsLandscape(!isVerticalId);
                             }}
                             className={`w-full h-full object-contain relative z-10 transition-opacity duration-[600ms] ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
@@ -137,6 +141,7 @@ const VideoCard = ({ video, index, onClick, hoveredId, setHoveredId }) => {
                             </button>
                         </div>
                     </div>
+                    </motion.div>
                 </motion.div>
             </motion.div>
         </StaggerItem>
@@ -171,14 +176,14 @@ export const Videos = () => {
                         <a href="#/" className="text-slate-400 hover:text-slate-900 transition-colors inline-flex items-center gap-2 mb-4 md:mb-6 text-sm font-ultra-thin tracking-widest uppercase">
                             <span>← Back to Home</span>
                         </a>
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-ultra-thin tracking-tighter mb-10 md:mb-12 text-slate-900 drop-shadow-sm">
+                        <h1 className="text-4xl xs:text-5xl md:text-6xl lg:text-7xl font-ultra-thin tracking-tighter mb-10 md:mb-12 text-slate-900 drop-shadow-sm">
                             Videos & <strong className="font-heavy">Reels</strong>.
                         </h1>
                     </StaggerItem>
                 </div>
 
                 {/* Grid changed: 1 col mobile, 2 col tablet (md), 3 col desktop (lg). Gap adjusted for mobile. */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 lg:gap-24 items-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 lg:gap-24 items-end">
                     {videosData.map((video, idx) => (
                         <VideoCard
                             key={video.id}
@@ -201,43 +206,107 @@ export const Videos = () => {
             <AnimatePresence>
                 {selectedVideo && (
                     <motion.div
+                        key="narrative-modal"
                         initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-                        animate={{ opacity: 1, backdropFilter: 'blur(16px)' }}
-                        exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-                        transition={{ duration: 0.5, ease: quarticOut }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-6 md:p-12"
+                        animate={{ opacity: 1, backdropFilter: 'blur(8px)', pointerEvents: 'auto' }}
+                        exit={{ opacity: 0, backdropFilter: 'blur(0px)', pointerEvents: 'none' }}
+                        transition={{ duration: 0.6, ease: quarticOut }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-black/10"
                         onClick={() => setSelectedVideo(null)}
                     >
-                        <motion.button
-                            className="absolute top-6 right-6 md:top-8 md:right-8 text-white/50 hover:text-white bg-black/20 hover:bg-black/40 rounded-full p-4 transition-all duration-300 z-10 hover:scale-110 border border-white/10 hover:border-white/30"
-                            onClick={() => setSelectedVideo(null)}
-                            title="Close"
-                        >
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </motion.button>
-
+                        {/* Right Section: White Frosted Glass Panel */}
                         <motion.div
-                            initial={{ scale: 0.95, opacity: 0, y: 30 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.95, opacity: 0, y: 30 }}
-                            transition={{ duration: 0.5, ease: quarticOut }}
-                            className="relative w-full max-w-6xl max-h-full flex flex-col items-center justify-center overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] border border-white/10 bg-black/50 rounded-2xl md:rounded-[1rem]"
+                            initial={{ x: '100%', opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            exit={{ x: '100%', opacity: 0 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 200, delay: 0.1 }}
+                            className="absolute right-0 top-0 bottom-0 w-full md:w-[40%] max-w-xl bg-white/70 backdrop-blur-2xl border-l border-white/50 shadow-2xl p-8 md:p-12 z-[105] flex flex-col justify-center overflow-y-auto"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {/* Make modal video more responsive on mobile */}
-                            <video
-                                src={selectedVideo.src.startsWith('http') ? selectedVideo.src : `/videos/${selectedVideo.src}`}
-                                poster={selectedVideo.thumbnail}
-                                controls
-                                autoPlay
-                                playsInline
-                                className="max-w-full w-full lg:w-auto max-h-[85vh] h-auto object-contain drop-shadow-2xl"
+                            <button
+                                className="absolute top-6 right-6 text-slate-400 hover:text-slate-800 bg-white/50 hover:bg-white/80 rounded-full p-3 transition-all duration-300 z-10 hover:scale-110 shadow-sm border border-slate-200"
+                                onClick={() => setSelectedVideo(null)}
+                                title="Close"
                             >
-                                Your browser does not support the video tag.
-                            </video>
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+
+                            <div className="mt-8">
+                                <motion.p 
+                                    initial={{y: 20, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{delay: 0.2, duration: 0.5}} 
+                                    className="text-sm font-light text-slate-400 tracking-[0.2em] uppercase mb-2"
+                                >
+                                    Narrative Arc
+                                </motion.p>
+                                <motion.h2 
+                                    initial={{y: 20, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{delay: 0.3, duration: 0.5}} 
+                                    className="text-4xl md:text-5xl font-ultra-thin tracking-tighter text-slate-900 mb-8"
+                                >
+                                    {selectedVideo.title}
+                                </motion.h2>
+                                
+                                <motion.div 
+                                    initial={{y: 20, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{delay: 0.4, duration: 0.5}} 
+                                    className="space-y-8 text-slate-600 font-light leading-relaxed"
+                                >
+                                    <div>
+                                        <h3 className="font-medium tracking-wide text-slate-900 mb-3 text-sm uppercase">The Story</h3>
+                                        <p>{selectedVideo.story || "A visual exploration pushing creative boundaries and storytelling through movement."}</p>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-medium tracking-wide text-slate-900 mb-3 text-sm uppercase">Behind the Scenes</h3>
+                                        <p>{selectedVideo.behindTheScenes || "Shot locally with a small crew. Emphasized practical lighting and fast-paced editing."}</p>
+                                    </div>
+                                </motion.div>
+                            </div>
                         </motion.div>
+
+                        {/* Left Section: Video Container */}
+                        {/* We use pointer-events-none so clicking outside the video still hits the main backdrop to close */}
+                        <div className="absolute left-0 top-0 bottom-0 right-0 md:right-[40%] p-4 md:p-8 z-[110] flex items-center justify-center pointer-events-none">
+                            <motion.div
+                                layoutId={`video-container-${selectedVideo.id}`}
+                                transition={{ type: "spring", duration: 0.6, bounce: 0.2 }}
+                                // Calculate aspect ratio classes dynamically based on the hardcoded vertical list, just like in VideoCard
+                                className={`relative group pointer-events-auto rounded-2xl md:rounded-[1rem] overflow-hidden shadow-2xl bg-black ${['01', '04', '07', '10', '12', '13'].includes(selectedVideo.id) ? 'w-auto h-[85vh] aspect-[9/16]' : 'w-[90%] md:w-[85%] lg:w-[75%] h-auto aspect-video'}`}
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <video
+                                    src={selectedVideo.src.startsWith('http') ? selectedVideo.src : `/videos/${selectedVideo.src}`}
+                                    poster={selectedVideo.thumbnail}
+                                    controls
+                                    autoPlay
+                                    loop
+                                    playsInline
+                                    className="w-full h-full object-contain"
+                                >
+                                    Your browser does not support the video tag.
+                                </video>
+                                
+                                {/* Extra Fullscreen Button overriding standard controls */}
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        const videoEl = e.currentTarget.parentElement.querySelector('video');
+                                        if (videoEl.requestFullscreen) {
+                                            videoEl.requestFullscreen();
+                                        } else if (videoEl.webkitRequestFullscreen) { /* Safari */
+                                            videoEl.webkitRequestFullscreen();
+                                        } else if (videoEl.msRequestFullscreen) { /* IE11 */
+                                            videoEl.msRequestFullscreen();
+                                        }
+                                    }}
+                                    className="absolute top-4 left-4 bg-black/40 hover:bg-black/80 backdrop-blur-md text-white rounded-full p-2.5 border border-white/20 transition-all opacity-0 group-hover:opacity-100 shadow-lg z-[120]"
+                                    title="Fullscreen"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                                    </svg>
+                                </button>
+                            </motion.div>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

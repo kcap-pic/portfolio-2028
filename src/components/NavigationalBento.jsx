@@ -147,8 +147,8 @@ export const ProfessionalSection = ({ className }) => {
             img: null,
             gradientFrom: '#1e3a5f',
             gradientTo: '#0f172a',
-            url: '#/projects',
-            cta: 'View Work',
+            url: undefined,
+            cta: 'Coming Soon',
         },
     ];
 
@@ -180,7 +180,7 @@ export const ProfessionalSection = ({ className }) => {
                                 {s.id === 'experience' ? '∞' : '</>'}
                             </span>
                         </div>
-                        <a href={s.url} className="absolute inset-0" />
+                        <a href={s.url || undefined} onClick={e => !s.url && e.preventDefault()} className={`absolute inset-0 ${!s.url ? 'cursor-not-allowed' : ''}`} />
                     </motion.div>
                 </AnimatePresence>
 
@@ -194,11 +194,14 @@ export const ProfessionalSection = ({ className }) => {
                     <div className="flex items-center gap-3 shrink-0">
                         <NavStrip count={slides.length} idx={idx} setIdx={setIdx} goLeft={goLeft} goRight={goRight} />
                         <a
-                            href={s.url}
-                            onClick={e => e.stopPropagation()}
-                            className="px-3 py-1.5 border border-slate-900/20 text-slate-700 text-[10px] font-medium rounded-full hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-300"
+                            href={s.url || undefined}
+                            onClick={e => {
+                                e.stopPropagation();
+                                if (!s.url) e.preventDefault();
+                            }}
+                            className={`px-3 py-1.5 border items-center justify-center flex ${s.url ? 'border-slate-900/20 text-slate-700 hover:bg-slate-900 hover:text-white hover:border-slate-900' : 'border-slate-200 text-slate-400 cursor-not-allowed'} text-[10px] font-medium rounded-full transition-all duration-300`}
                         >
-                            {s.cta} →
+                            {s.cta} {s.url && '→'}
                         </a>
                     </div>
                 </div>

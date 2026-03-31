@@ -71,7 +71,7 @@ export const PhotographyIndex = () => {
                         <a href="#/" className="text-slate-400 hover:text-slate-900 transition-colors flex items-center gap-2 mb-4 md:mb-6 text-sm font-ultra-thin tracking-widest uppercase">
                             <span>← Back to Home</span>
                         </a>
-                        <h1 className="text-5xl md:text-7xl font-ultra-thin tracking-tighter mb-10 md:mb-12 text-slate-900 drop-shadow-sm">
+                        <h1 className="text-4xl xs:text-5xl md:text-7xl font-ultra-thin tracking-tighter mb-8 md:mb-12 text-slate-900 drop-shadow-sm">
                             Photography <strong className="font-heavy">Portfolio</strong>.
                         </h1>
                     </StaggerItem>
@@ -84,16 +84,16 @@ export const PhotographyIndex = () => {
                             <div key={cat.id} className="snap-center shrink-0">
                                 <StaggerItem>
                                     <a href={`#/photography/${cat.id}`} className="group block cursor-pointer">
-                                        <div className={`flex flex-row items-center md:items-end relative w-full ${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
-                                            <div className="w-[65%] sm:w-[70%] aspect-[3/2] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.2)] md:shadow-[0_20px_50px_rgba(0,0,0,0.2)] relative border border-slate-900/15 group-hover:border-slate-900/30 transition-all duration-500 z-0">
+                                        <div className={`flex flex-col md:flex-row items-center md:items-end relative w-full ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+                                            <div className="w-full md:w-[70%] aspect-[3/2] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.2)] md:shadow-[0_20px_50px_rgba(0,0,0,0.2)] relative border border-slate-900/15 group-hover:border-slate-900/30 transition-all duration-500 z-0">
                                                 <img src={`/${cat.cover}`} alt={cat.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
                                             </div>
-                                            <div className={`w-[45%] md:w-[45%] z-10 relative -mb-10 md:-mb-8 mt-10 md:mt-0 ${isEven ? '-ml-[10%] md:-ml-[15%]' : '-mr-[10%] md:-mr-[15%]'}`}>
-                                                <div className="bg-white/80 backdrop-blur-3xl p-3 sm:p-4 md:p-8 w-full flex flex-col justify-center border border-slate-900/15 shadow-[inset_1px_1px_2px_rgba(255,255,255,0.4),inset_2px_2px_6px_rgba(255,255,255,0.7),0_10px_30px_rgba(0,0,0,0.1)] md:shadow-[inset_2px_2px_4px_rgba(255,255,255,0.8),inset_-2px_-2px_8px_rgba(255,255,255,0.5),0_25px_50px_rgba(0,0,0,0.2)] relative overflow-hidden group-hover:border-slate-900/30 transition-all duration-500">
-                                                    <div className={`absolute top-0 ${isEven ? 'right-0' : 'left-0'} p-3 md:p-6 opacity-20 group-hover:opacity-100 transition-opacity text-slate-900 text-[10px] md:text-base leading-none`}>↗</div>
-                                                    <h2 className="text-xl sm:text-2xl md:text-5xl border-b border-slate-300/50 pb-2 md:pb-4 mb-2 md:mb-4 font-heavy text-slate-900 drop-shadow-sm leading-tight tracking-tight">{cat.title}</h2>
-                                                    <p className="mt-2 text-slate-500 text-[10px] sm:text-xs md:text-sm font-medium italic leading-snug">
+                                            <div className={`w-[85%] md:w-[45%] z-10 relative -mt-8 md:mt-0 md:-mb-8 ${isEven ? 'md:-ml-[15%]' : 'md:-mr-[15%]'}`}>
+                                                <div className="bg-white/80 backdrop-blur-3xl p-5 sm:p-6 md:p-8 w-full flex flex-col justify-center border border-slate-900/15 shadow-[inset_1px_1px_2px_rgba(255,255,255,0.4),0_10px_30px_rgba(0,0,0,0.1)] md:shadow-[inset_2px_2px_4px_rgba(255,255,255,0.8),inset_-2px_-2px_8px_rgba(0,0,0,0.15),0_25px_50px_rgba(0,0,0,0.4)] relative overflow-hidden group-hover:border-slate-900/30 transition-all duration-500">
+                                                    <div className={`absolute top-0 ${isEven ? 'right-0' : 'left-0'} p-3 md:p-6 opacity-20 group-hover:opacity-100 transition-opacity text-slate-900 text-sm md:text-base leading-none`}>↗</div>
+                                                    <h2 className="text-2xl md:text-5xl border-b border-slate-300/50 pb-2 md:pb-4 mb-2 md:mb-4 font-heavy text-slate-900 drop-shadow-sm leading-tight tracking-tight">{cat.title}</h2>
+                                                    <p className="mt-2 text-slate-500 text-xs md:text-sm font-medium italic leading-snug">
                                                         {cat.rows.reduce((sum, r) => sum + r.photos.length, 0)} {cat.rows.reduce((sum, r) => sum + r.photos.length, 0) === 1 ? 'Photo' : 'Photos'} <span className="hidden md:inline">in collection</span>
                                                     </p>
                                                 </div>

@@ -10,7 +10,9 @@ export const WorkPage = () => {
     ];
 
     return (
-        <div className="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-screen">
+        <div className="w-full min-h-[100svh] pt-32 pb-48 px-6 max-w-7xl mx-auto relative z-10 pointer-events-auto">
+            <div className="fixed inset-0 bg-[#fafafa] -z-[2] pointer-events-none"></div>
+            <div className="fixed inset-0 -z-[1] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#64748b 2px, transparent 2px)', backgroundSize: '64px 64px', animation: 'moveDots 8s linear infinite' }}></div>
             <StaggerContainer>
                 <StaggerItem>
                     <h1 className="text-6xl md:text-8xl font-ultra-thin tracking-tighter mb-16">

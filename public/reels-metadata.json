@@ -53,5 +53,15 @@
     "id": "11",
     "videoUrl": "https://firebasestorage.googleapis.com/v0/b/portfolio-website-e190b.firebasestorage.app/o/Video%20and%20Reels%2F11.mp4?alt=media&token=7a01aee8-8272-4a2c-8eea-2384690ec255",
     "thumbnailUrl": "/thumbnails/11.webp"
+  },
+  {
+    "id": "12",
+    "videoUrl": "https://firebasestorage.googleapis.com/v0/b/portfolio-website-e190b.firebasestorage.app/o/Video%20and%20Reels%2FHoli%20Final%20V4.mp4?alt=media&token=98b48c62-973a-4206-b016-a68579982e63",
+    "thumbnailUrl": "/thumbnails/12.webp"
+  },
+  {
+    "id": "13",
+    "videoUrl": "https://firebasestorage.googleapis.com/v0/b/portfolio-website-e190b.firebasestorage.app/o/Video%20and%20Reels%2FValentines.mp4?alt=media",
+    "thumbnailUrl": "/thumbnails/13.png"
   }
 ]
