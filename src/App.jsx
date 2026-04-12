@@ -12,6 +12,9 @@ const Awards = React.lazy(() => import('./pages/Awards').then(module => ({ defau
 const Contact = React.lazy(() => import('./pages/Discover').then(module => ({ default: module.Discover })));
 const About = React.lazy(() => import('./pages/Discover').then(module => ({ default: module.Discover })));
 const Discover = React.lazy(() => import('./pages/Discover').then(module => ({ default: module.Discover })));
+const CaseStudies = React.lazy(() => import('./pages/CaseStudies').then(module => ({ default: module.CaseStudies })));
+const CaseStudySEJC = React.lazy(() => import('./pages/CaseStudySEJC').then(module => ({ default: module.CaseStudySEJC })));
+const CaseStudyAI = React.lazy(() => import('./pages/CaseStudyAI').then(module => ({ default: module.CaseStudyAI })));
 
 
 const PageLoader = () => (
@@ -81,6 +84,21 @@ const App = () => {
             {currentPath === '/contact' && (
               <motion.div key="contact" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.97 }} transition={{ duration: 0.35 }}>
                 <Contact />
+              </motion.div>
+            )}
+            {currentPath === '/case-studies' && (
+              <motion.div key="case-studies" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+                <CaseStudies />
+              </motion.div>
+            )}
+            {currentPath === '/case-studies/sejc-2026' && (
+              <motion.div key="sejc" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }}>
+                <CaseStudySEJC />
+              </motion.div>
+            )}
+            {currentPath === '/case-studies/ai-series' && (
+              <motion.div key="ai-series" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }}>
+                <CaseStudyAI />
               </motion.div>
             )}
           </AnimatePresence>

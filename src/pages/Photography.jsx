@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { StaggerContainer, StaggerItem } from '../components/StaggerAnimations';
 import { photographyCategories } from '../data/photography';
+import photoMetadata from '../data/photo-metadata.json';
 
 const LightboxOverlay = ({ currentPhoto, allPhotos, onClose, onNext, onPrev }) => {
     if (!currentPhoto) return null;
@@ -15,8 +16,33 @@ const LightboxOverlay = ({ currentPhoto, allPhotos, onClose, onNext, onPrev }) =
             </div>
 
             <div className="absolute bottom-6 left-6 md:left-12 flex flex-col z-20 pointer-events-none">
-                <h4 className="text-sm font-heavy tracking-widest uppercase text-slate-800 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-800 block"></span> Viewing Image</h4>
-                <p className="text-xs text-slate-500 font-light mt-1 pl-4">{allPhotos.indexOf(currentPhoto) + 1} / {allPhotos.length}</p>
+                {(() => {
+                    // Strip extension to match JSON keys (e.g. "Portrait/IMG_7234.webp" -> "Portrait/IMG_7234")
+                    const metaKey = currentPhoto.replace(/\.[^/.]+$/, "");
+                    const meta = photoMetadata[metaKey];
+                    
+                    if (!meta) return null;
+                    
+                    return (
+                        <motion.div 
+                            initial={{ y: 20, opacity: 0 }} 
+                            animate={{ y: 0, opacity: 1 }} 
+                            transition={{ delay: 0.2 }}
+                            className="flex flex-col gap-1"
+                        >
+                            <div className="flex items-center gap-3 text-slate-900 font-medium tracking-tight">
+                                <span className="text-lg opacity-80">📷</span>
+                                <span className="text-sm md:text-base uppercase tracking-tighter">{meta.model || meta.make || 'Camera'}</span>
+                            </div>
+                            <div className="flex items-center gap-4 pl-8 text-[11px] md:text-xs font-medium text-slate-500 uppercase tracking-widest whitespace-nowrap overflow-x-auto no-scrollbar">
+                                {meta.shutter && <span className="flex items-center gap-1.5"><span className="opacity-40">EXP</span> {meta.shutter}</span>}
+                                {meta.aperture && <span className="flex items-center gap-1.5"><span className="opacity-40">APT</span> {meta.aperture}</span>}
+                                {meta.iso && <span className="flex items-center gap-1.5"><span className="opacity-40">ISO</span> {meta.iso.replace('ISO ', '')}</span>}
+                                {meta.focal && <span className="flex items-center gap-1.5"><span className="opacity-40">FOC</span> {meta.focal}</span>}
+                            </div>
+                        </motion.div>
+                    );
+                })()}
             </div>
 
             <div className="absolute bottom-6 right-6 md:right-12 z-20">

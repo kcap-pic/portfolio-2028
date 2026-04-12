@@ -97,13 +97,13 @@ const AwardsMiniPreview = () => (
 );
 
 const ProjectsMiniPreview = () => (
-    <div className="w-[18rem] h-[12rem] rounded-[1.2rem] bg-slate-50 border border-slate-200 p-4 flex flex-col items-center justify-center relative overflow-hidden shadow-inner cursor-not-allowed">
-        <div className="absolute inset-0 opacity-40" style={{ backgroundImage: 'radial-gradient(circle at center, #cbd5e1 1px, transparent 1px)', backgroundSize: '12px 12px' }}></div>
+    <div className="w-[18rem] h-[12rem] rounded-[1.2rem] bg-slate-50 border border-slate-200 p-4 flex flex-col items-center justify-center relative overflow-hidden shadow-inner">
+        <div className="absolute inset-0 opacity-40" style={{ backgroundImage: 'radial-gradient(circle at center, #64748b 1px, transparent 1px)', backgroundSize: '12px 12px' }}></div>
         <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center mb-2 shadow-sm z-10">
-            <span className="text-slate-700 font-heavy text-lg">&lt;/&gt;</span>
+            <span className="text-slate-800 font-heavy text-lg">📁</span>
         </div>
-        <h3 className="text-sm font-heavy tracking-tight text-slate-900 z-10">Projects</h3>
-        <p className="text-[10px] font-heavy text-slate-500 uppercase tracking-widest mt-1 z-10 bg-slate-200/50 px-2 py-0.5 rounded">Coming Soon</p>
+        <h3 className="text-sm font-heavy tracking-tight text-slate-900 z-10">Case Studies</h3>
+        <p className="text-[8px] font-medium text-slate-500 uppercase tracking-widest mt-1.5 z-10">Interactive Projects</p>
     </div>
 );
 
@@ -222,7 +222,7 @@ export const DynamicIsland = ({ currentPath }) => {
         { id: 'photo', label: 'Photo', href: '#/photography' },
         { id: 'video', label: 'Video', href: '#/videos' },
         { id: 'discover', label: 'About', href: '#/discover' },
-        { id: 'project', label: 'Projects', href: undefined, disabled: true },
+        { id: 'project', label: 'Case Studies', href: '#/case-studies' },
     ];
 
     const isActive = (href) => {
@@ -409,9 +409,9 @@ export const DynamicIsland = ({ currentPath }) => {
                                                 link.disabled
                                                     ? isLightPage ? 'text-slate-400 cursor-not-allowed' : 'text-white/30 cursor-not-allowed'
                                                     : isActive(link.href)
-                                                        ? isLightPage ? 'bg-slate-900/10 text-slate-900 cursor-pointer' : 'bg-white/20 text-white cursor-pointer'
-                                            : isLightPage ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-900/5 cursor-pointer' : 'text-white/60 hover:text-white hover:bg-white/10 cursor-pointer'
-                                        } ${isMobile ? 'w-full text-center py-2 px-4' : 'px-3 py-1.5'}`}
+                        ? isLightPage ? 'bg-slate-900/10 text-slate-900 cursor-pointer' : 'bg-white/20 text-white cursor-pointer'
+                        : isLightPage ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-900/5 cursor-pointer' : 'text-white/60 hover:text-white hover:bg-white/10 cursor-pointer'
+                    } ${isMobile ? 'w-full text-center py-2 px-4' : 'px-3 py-1.5'}`}
                                     >
                                             {link.label}
                                         </a>

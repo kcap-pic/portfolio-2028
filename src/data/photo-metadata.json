@@ -1,0 +1,794 @@
+{
+  "Events/183-IMG_8415": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/640s",
+    "aperture": "f/2.8",
+    "iso": "ISO 2500",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Events/185-IMG_8533": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/640s",
+    "aperture": "f/2.8",
+    "iso": "ISO 2500",
+    "focal": "70mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Events/193-IMG_9591": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 2000",
+    "focal": "125mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Events/195-IMG_9689": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/320s",
+    "aperture": "f/2.8",
+    "iso": "ISO 2000",
+    "focal": "102mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Events/Cover": {
+    "model": "Canon EOS Rebel T7",
+    "make": "Canon",
+    "shutter": "1/400s",
+    "aperture": "f/2.8",
+    "iso": "ISO 3200",
+    "focal": "24mm",
+    "lens": "24-70mm F2.8 DG OS HSM | Art 017"
+  },
+  "Events/IMG_0273": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/500s",
+    "aperture": "f/2.8",
+    "iso": "ISO 160",
+    "focal": "102mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Events/IMG_9135": {
+    "model": "Canon EOS Rebel T7",
+    "make": "Canon",
+    "shutter": "1/2s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "30mm",
+    "lens": "24-70mm F2.8 DG OS HSM | Art 017"
+  },
+  "Events/IMG_9156": {
+    "model": "Canon EOS Rebel T7",
+    "make": "Canon",
+    "shutter": "1/2s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "70mm",
+    "lens": "24-70mm F2.8 DG OS HSM | Art 017"
+  },
+  "Outdoors/156-IMG_7699": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/1.8",
+    "iso": "ISO 1250",
+    "focal": "36mm",
+    "lens": "17-40mm F1.8 DC | Art 025"
+  },
+  "Outdoors/158-IMG_7702": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/1.8",
+    "iso": "ISO 1250",
+    "focal": "34mm",
+    "lens": "17-40mm F1.8 DC | Art 025"
+  },
+  "Outdoors/IMG_4811": {
+    "model": "Canon EOS Rebel T7",
+    "make": "Canon",
+    "shutter": "1/640s",
+    "aperture": "f/8",
+    "iso": "ISO 160",
+    "focal": "50mm",
+    "lens": "EF50mm f/1.8 STM"
+  },
+  "Portrait/IMG_7234": {
+    "model": "Canon EOS Rebel T7",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 1000",
+    "focal": "135mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Baseball/IMG_4963": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/4000s",
+    "aperture": "f/1.8",
+    "iso": "ISO 100",
+    "focal": "26mm",
+    "lens": "17-40mm F1.8 DC | Art 025"
+  },
+  "Sports/Baseball/IMG_5050-2": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/5000s",
+    "aperture": "f/1.8",
+    "iso": "ISO 100",
+    "focal": "20mm",
+    "lens": "17-40mm F1.8 DC | Art 025"
+  },
+  "Sports/Baseball/IMG_5104": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/1.8",
+    "iso": "ISO 100",
+    "focal": "18mm",
+    "lens": "17-40mm F1.8 DC | Art 025"
+  },
+  "Sports/Baseball/IMG_5430": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/25s",
+    "aperture": "f/22",
+    "iso": "ISO 100",
+    "focal": "500mm",
+    "lens": "TAMRON SP 150-600mm F/5-6.3 Di VC USD G2 A022"
+  },
+  "Sports/Baseball/IMG_5702": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/6.3",
+    "iso": "ISO 320",
+    "focal": "600mm",
+    "lens": "TAMRON SP 150-600mm F/5-6.3 Di VC USD G2 A022"
+  },
+  "Sports/Baseball/IMG_9559": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 400",
+    "focal": "105mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Baseball/IMG_9619": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 800",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Basketball/129-IMG_6851": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/15s",
+    "aperture": "f/3.5",
+    "iso": "ISO 100",
+    "focal": "21mm",
+    "lens": "17-40mm F1.8 DC | Art 025"
+  },
+  "Sports/Basketball/133-IMG_7228": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 4000",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Basketball/136-IMG_7301": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 4000",
+    "focal": "165mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Basketball/143-IMG_7369": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 4000",
+    "focal": "115mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Basketball/144-IMG_7389": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 4000",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Basketball/151-IMG_7510": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/20s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "28mm",
+    "lens": "17-40mm F1.8 DC | Art 025"
+  },
+  "Sports/Basketball/154-IMG_7567": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 4000",
+    "focal": "110mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Basketball/198-IMG_9956": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 3200",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Basketball/206-IMG_0057": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 3200",
+    "focal": "110mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Basketball/211-IMG_0124": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 3200",
+    "focal": "70mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Basketball/212-IMG_0206": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 3200",
+    "focal": "130mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Basketball/218-IMG_0397": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 3200",
+    "focal": "135mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Basketball/219-IMG_0469": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 3200",
+    "focal": "130mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Basketball/227-IMG_0766": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 3200",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/102-IMG_1106": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/2500s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "168mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/105-IMG_1185": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 200",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/106-IMG_1253": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/2000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 200",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/107-IMG_1340": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/2000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 200",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/109-IMG_1394": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1600s",
+    "aperture": "f/2.8",
+    "iso": "ISO 400",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/247-IMG_1147": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/25s",
+    "aperture": "f/16",
+    "iso": "ISO 100",
+    "focal": "170mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/253-IMG_1215": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1600s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "70mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/28-IMG_2597": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/25s",
+    "aperture": "f/18",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/350-IMG_2199": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 500",
+    "focal": "165mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/382-IMG_2492": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 2000",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/75-IMG_0074": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/76-IMG_0163": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/640s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "70mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/85-IMG_0533": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/2000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 200",
+    "focal": "168mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/98-IMG_0966": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/6400s",
+    "aperture": "f/2.8",
+    "iso": "ISO 250",
+    "focal": "70mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/IMG_2127": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1600s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "88mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/IMG_2429": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/400s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "145mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/IMG_2500": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1600s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "190mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/IMG_2761": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/3.5",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/IMG_3062": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/400s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/1-IMG_7559": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 800",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/10-IMG_9778": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/2500s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/11-IMG_9843": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/2500s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/12-IMG_9904": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/2500s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "70mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/13-IMG_9992": {
+    "model": "Canon EOS M50m2",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/14-IMG_0020": {
+    "model": "Canon EOS M50m2",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "180mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/15-IMG_0244": {
+    "model": "Canon EOS M50m2",
+    "make": "Canon",
+    "shutter": "1/1600s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/16-IMG_0281": {
+    "model": "Canon EOS M50m2",
+    "make": "Canon",
+    "shutter": "1/1600s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/17-IMG_0321": {
+    "model": "Canon EOS M50m2",
+    "make": "Canon",
+    "shutter": "1/1600s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/18-IMG_1588": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 1600",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/19-IMG_1592": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 1600",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/2-IMG_7677": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 800",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/20-IMG_2199": {
+    "model": "Canon EOS M50m2",
+    "make": "Canon",
+    "shutter": "1/20s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/21-IMG_2565": {
+    "model": "Canon EOS M50m2",
+    "make": "Canon",
+    "shutter": "1/800s",
+    "aperture": "f/2.8",
+    "iso": "ISO 3200",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/3-IMG_7705": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/15s",
+    "aperture": "f/20",
+    "iso": "ISO 800",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/4-IMG_7713": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/640s",
+    "aperture": "f/2.8",
+    "iso": "ISO 800",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/5-IMG_8123": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/2500s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/6-IMG_8196": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 400",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/7-IMG_8281": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 800",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/8-IMG_9272": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1600s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/9-IMG_9390": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "102mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Soccer/IMG_7559": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 800",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Softball/828A1577-2": {
+    "model": "Canon EOS R6",
+    "make": "Canon",
+    "shutter": "1/640s",
+    "aperture": "f/2.8",
+    "iso": "ISO 2000",
+    "focal": "163mm",
+    "lens": "RF70-200mm F2.8 L IS USM"
+  },
+  "Sports/Softball/IMG_6208": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "123mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Softball/IMG_6288": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/800s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Softball/IMG_6458": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1600s",
+    "aperture": "f/2.8",
+    "iso": "ISO 400",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Softball/IMG_7057": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Softball/IMG_7522": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "85mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Softball/IMG_7551": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 125",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Softball/IMG_7726": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "85mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Softball/IMG_7809": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 320",
+    "focal": "165mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Softball/IMG_7939": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 640",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Softball/IMG_8616": {
+    "model": "Canon EOS REBEL T3i",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 125",
+    "focal": "75mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Volleyball/42-IMG_5491": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 3200",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Volleyball/50-IMG_5583": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 3200",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Volleyball/69-IMG_5829": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/800s",
+    "aperture": "f/2.8",
+    "iso": "ISO 3200",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  }
+}

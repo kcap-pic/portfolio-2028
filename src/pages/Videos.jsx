@@ -220,7 +220,7 @@ export const Videos = () => {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: '100%', opacity: 0 }}
                             transition={{ type: "spring", damping: 25, stiffness: 200, delay: 0.1 }}
-                            className="absolute right-0 top-0 bottom-0 w-full md:w-[40%] max-w-xl bg-white/70 backdrop-blur-2xl border-l border-white/50 shadow-2xl p-8 md:p-12 z-[105] flex flex-col justify-center overflow-y-auto"
+                            className="absolute right-0 top-0 bottom-0 w-full md:w-[40%] max-w-xl bg-white/50 backdrop-blur-xl border-l border-white/50 shadow-2xl p-8 md:p-12 z-[105] flex flex-col justify-center overflow-y-auto"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <button
@@ -234,31 +234,27 @@ export const Videos = () => {
                             </button>
 
                             <div className="mt-8">
-                                <motion.p 
-                                    initial={{y: 20, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{delay: 0.2, duration: 0.5}} 
-                                    className="text-sm font-light text-slate-400 tracking-[0.2em] uppercase mb-2"
-                                >
-                                    Narrative Arc
-                                </motion.p>
                                 <motion.h2 
                                     initial={{y: 20, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{delay: 0.3, duration: 0.5}} 
-                                    className="text-4xl md:text-5xl font-ultra-thin tracking-tighter text-slate-900 mb-8"
+                                    className="text-3xl md:text-4xl font-medium tracking-tight text-slate-900 mb-6 leading-tight"
                                 >
                                     {selectedVideo.title}
                                 </motion.h2>
+
+                                <motion.div 
+                                    initial={{scaleX: 0}} animate={{scaleX: 1}} transition={{delay: 0.4, duration: 0.7, ease: quarticOut}}
+                                    className="w-12 h-[1px] bg-slate-300 mb-8 origin-left"
+                                />
                                 
                                 <motion.div 
-                                    initial={{y: 20, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{delay: 0.4, duration: 0.5}} 
-                                    className="space-y-8 text-slate-600 font-light leading-relaxed"
+                                    initial={{y: 20, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{delay: 0.5, duration: 0.5}} 
+                                    className="space-y-6 text-slate-800 text-[15px] md:text-base leading-8 font-medium [&_strong]:font-bold [&_strong]:text-black"
                                 >
-                                    <div>
-                                        <h3 className="font-medium tracking-wide text-slate-900 mb-3 text-sm uppercase">The Story</h3>
-                                        <p>{selectedVideo.story || "A visual exploration pushing creative boundaries and storytelling through movement."}</p>
-                                    </div>
-                                    <div>
-                                        <h3 className="font-medium tracking-wide text-slate-900 mb-3 text-sm uppercase">Behind the Scenes</h3>
-                                        <p>{selectedVideo.behindTheScenes || "Shot locally with a small crew. Emphasized practical lighting and fast-paced editing."}</p>
-                                    </div>
+                                    {selectedVideo.story && <div>{selectedVideo.story}</div>}
+                                    {selectedVideo.behindTheScenes && <div>{selectedVideo.behindTheScenes}</div>}
+                                    {!selectedVideo.story && !selectedVideo.behindTheScenes && (
+                                        <div>A visual exploration pushing creative boundaries and storytelling through movement. Shot locally with a small crew. Emphasized practical lighting and fast-paced editing.</div>
+                                    )}
                                 </motion.div>
                             </div>
                         </motion.div>
