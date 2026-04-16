@@ -4,6 +4,16 @@ import { StaggerContainer, StaggerItem } from '../components/StaggerAnimations';
 import { photographyCategories } from '../data/photography';
 import photoMetadata from '../data/photo-metadata.json';
 
+// Helper to shuffle an array (Fisher-Yates)
+const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+};
+
 const LightboxOverlay = ({ currentPhoto, allPhotos, onClose, onNext, onPrev }) => {
     if (!currentPhoto) return null;
     return (
@@ -137,10 +147,28 @@ export const PhotographyIndex = () => {
 };
 
 export const PhotographyGallery = ({ categoryId }) => {
-    const startIndex = photographyCategories.findIndex(c => c.id === categoryId);
-    const sortedCategories = startIndex !== -1
-        ? [...photographyCategories.slice(startIndex), ...photographyCategories.slice(0, startIndex)]
-        : photographyCategories;
+    const [shuffledCategories, setShuffledCategories] = useState([]);
+
+    useEffect(() => {
+        // Find the starting category index
+        const startIndex = photographyCategories.findIndex(c => c.id === categoryId);
+        
+        // Rebuild the category list starting with the chosen one
+        const reordered = startIndex !== -1
+            ? [...photographyCategories.slice(startIndex), ...photographyCategories.slice(0, startIndex)]
+            : [...photographyCategories];
+
+        // Randomize photos within each row of every category
+        const finalized = reordered.map(cat => ({
+            ...cat,
+            rows: cat.rows.map(row => ({
+                ...row,
+                photos: shuffleArray(row.photos)
+            }))
+        }));
+
+        setShuffledCategories(finalized);
+    }, [categoryId]);
 
     const [lightboxInfo, setLightboxInfo] = useState({
         isOpen: false,
@@ -191,7 +219,7 @@ export const PhotographyGallery = ({ categoryId }) => {
             >
                 {(() => {
                     let globalRowIndex = 0;
-                    return sortedCategories.map((cat, catIdx) => (
+                    return shuffledCategories.map((cat, catIdx) => (
                         <div key={`${cat.id}-${catIdx}`} className="w-full flex flex-col relative pt-0 mb-4">
                             <StaggerContainer className="px-6 md:px-12 w-full flex flex-col relative z-10">
                                 <StaggerItem>

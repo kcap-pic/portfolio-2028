@@ -6,8 +6,10 @@ import { videosData } from '../data/videos';
 const VideoCard = ({ video, index, onClick, hoveredId, setHoveredId }) => {
     const videoRef = useRef(null);
     const [isMuted, setIsMuted] = useState(true);
-    const [isLandscape, setIsLandscape] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
+    
+    // Hardcoded vertical video IDs per your dataset
+    const isVertical = ['01', '04', '07', '10', '12', '13'].includes(video.id);
 
     const isHovered = hoveredId === video.id;
     const isDimmed = hoveredId !== null && hoveredId !== video.id;
@@ -78,8 +80,8 @@ const VideoCard = ({ video, index, onClick, hoveredId, setHoveredId }) => {
                         onClick={() => onClick(video)}
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
-                        // Changed width sizing: on mobile let it be full width with some margin, on tablet/desktop keep the custom width sizing
-                        className={`relative group cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.165,0.84,0.44,1)] ${isLandscape ? 'w-full md:w-[95%] lg:w-[105%] xl:w-[110%]' : 'w-[90%] md:w-[85%] mx-auto'} rounded-2xl md:rounded-[1rem] overflow-hidden bg-black/5 shadow-2xl border border-slate-900/5`}
+                        // Determine width appropriately 
+                        className={`relative group cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.165,0.84,0.44,1)] ${isVertical ? 'w-[80%] md:w-[70%] mx-auto aspect-[9/16]' : 'w-full aspect-video'} rounded-2xl md:rounded-[1rem] overflow-hidden bg-black/5 shadow-2xl border border-slate-900/5`}
                         style={{
                             scale: isMobile ? 1 : (isHovered ? 1.05 : isDimmed ? 0.98 : 1), // Disable hover scale on mobile
                             opacity: isMobile ? 1 : (isDimmed ? 0.7 : 1),
@@ -88,13 +90,13 @@ const VideoCard = ({ video, index, onClick, hoveredId, setHoveredId }) => {
                         }}
                     >
                     {/* Size Container forcing exact aspect ratios to eliminate black bars via object-cover. */}
-                    <div className="relative w-full h-auto bg-black flex items-center justify-center overflow-hidden">
+                    <div className="relative w-full h-full bg-black flex items-center justify-center overflow-hidden">
 
                         {/* Cross-Dissolve Blur Placeholder Image */}
                         <img
                             src={video.thumbnail}
                             alt={video.title}
-                            className={`absolute inset-0 w-full h-full object-contain z-20 pointer-events-none transition-all duration-[600ms] ease-in-out ${isPlaying ? 'opacity-0 scale-102 blur-sm' : 'opacity-100 scale-100 blur-0'}`}
+                            className={`absolute inset-0 w-full h-full object-cover z-20 pointer-events-none transition-all duration-[600ms] ease-in-out ${isPlaying ? 'opacity-0 scale-102 blur-sm' : 'opacity-100 scale-100 blur-0'}`}
                         />
 
                         {/* Foreground Video Layer */}
@@ -103,11 +105,7 @@ const VideoCard = ({ video, index, onClick, hoveredId, setHoveredId }) => {
                             src={video.src.startsWith('http') ? video.src : `/videos/${video.src}`}
                             muted={isMuted}
                             playsInline
-                            onLoadedMetadata={(e) => {
-                                const isVerticalId = ['01', '04', '07', '10', '12', '13'].includes(video.id);
-                                setIsLandscape(!isVerticalId);
-                            }}
-                            className={`w-full h-full object-contain relative z-10 transition-opacity duration-[600ms] ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
+                            className={`w-full h-full object-cover relative z-10 transition-opacity duration-[600ms] ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
                         />
 
                         {/* Gradient Overlay */}
@@ -206,106 +204,139 @@ export const Videos = () => {
             <AnimatePresence>
                 {selectedVideo && (
                     <motion.div
-                        key="narrative-modal"
-                        initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-                        animate={{ opacity: 1, backdropFilter: 'blur(8px)', pointerEvents: 'auto' }}
-                        exit={{ opacity: 0, backdropFilter: 'blur(0px)', pointerEvents: 'none' }}
-                        transition={{ duration: 0.6, ease: quarticOut }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-black/10"
-                        onClick={() => setSelectedVideo(null)}
+                        key="reels-modal"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] bg-white/10 backdrop-blur-lg overflow-y-auto snap-y snap-mandatory scroll-smooth"
+                        onKeyDown={(e) => {
+                            if (e.key === 'Escape') setSelectedVideo(null);
+                        }}
                     >
-                        {/* Right Section: White Frosted Glass Panel */}
-                        <motion.div
-                            initial={{ x: '100%', opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            exit={{ x: '100%', opacity: 0 }}
-                            transition={{ type: "spring", damping: 25, stiffness: 200, delay: 0.1 }}
-                            className="absolute right-0 top-0 bottom-0 w-full md:w-[40%] max-w-xl bg-white/50 backdrop-blur-xl border-l border-white/50 shadow-2xl p-8 md:p-12 z-[105] flex flex-col justify-center overflow-y-auto"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <button
-                                className="absolute top-6 right-6 text-slate-400 hover:text-slate-800 bg-white/50 hover:bg-white/80 rounded-full p-3 transition-all duration-300 z-10 hover:scale-110 shadow-sm border border-slate-200"
-                                onClick={() => setSelectedVideo(null)}
-                                title="Close"
-                            >
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-
-                            <div className="mt-8">
-                                <motion.h2 
-                                    initial={{y: 20, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{delay: 0.3, duration: 0.5}} 
-                                    className="text-3xl md:text-4xl font-medium tracking-tight text-slate-900 mb-6 leading-tight"
-                                >
-                                    {selectedVideo.title}
-                                </motion.h2>
-
-                                <motion.div 
-                                    initial={{scaleX: 0}} animate={{scaleX: 1}} transition={{delay: 0.4, duration: 0.7, ease: quarticOut}}
-                                    className="w-12 h-[1px] bg-slate-300 mb-8 origin-left"
-                                />
-                                
-                                <motion.div 
-                                    initial={{y: 20, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{delay: 0.5, duration: 0.5}} 
-                                    className="space-y-6 text-slate-800 text-[15px] md:text-base leading-8 font-medium [&_strong]:font-bold [&_strong]:text-black"
-                                >
-                                    {selectedVideo.story && <div>{selectedVideo.story}</div>}
-                                    {selectedVideo.behindTheScenes && <div>{selectedVideo.behindTheScenes}</div>}
-                                    {!selectedVideo.story && !selectedVideo.behindTheScenes && (
-                                        <div>A visual exploration pushing creative boundaries and storytelling through movement. Shot locally with a small crew. Emphasized practical lighting and fast-paced editing.</div>
-                                    )}
-                                </motion.div>
-                            </div>
-                        </motion.div>
-
-                        {/* Left Section: Video Container */}
-                        {/* We use pointer-events-none so clicking outside the video still hits the main backdrop to close */}
-                        <div className="absolute left-0 top-0 bottom-0 right-0 md:right-[40%] p-4 md:p-8 z-[110] flex items-center justify-center pointer-events-none">
-                            <motion.div
-                                layoutId={`video-container-${selectedVideo.id}`}
-                                transition={{ type: "spring", duration: 0.6, bounce: 0.2 }}
-                                // Calculate aspect ratio classes dynamically based on the hardcoded vertical list, just like in VideoCard
-                                className={`relative group pointer-events-auto rounded-2xl md:rounded-[1rem] overflow-hidden shadow-2xl bg-black ${['01', '04', '07', '10', '12', '13'].includes(selectedVideo.id) ? 'w-auto h-[85vh] aspect-[9/16]' : 'w-[90%] md:w-[85%] lg:w-[75%] h-auto aspect-video'}`}
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <video
-                                    src={selectedVideo.src.startsWith('http') ? selectedVideo.src : `/videos/${selectedVideo.src}`}
-                                    poster={selectedVideo.thumbnail}
-                                    controls
-                                    autoPlay
-                                    loop
-                                    playsInline
-                                    className="w-full h-full object-contain"
-                                >
-                                    Your browser does not support the video tag.
-                                </video>
-                                
-                                {/* Extra Fullscreen Button overriding standard controls */}
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        const videoEl = e.currentTarget.parentElement.querySelector('video');
-                                        if (videoEl.requestFullscreen) {
-                                            videoEl.requestFullscreen();
-                                        } else if (videoEl.webkitRequestFullscreen) { /* Safari */
-                                            videoEl.webkitRequestFullscreen();
-                                        } else if (videoEl.msRequestFullscreen) { /* IE11 */
-                                            videoEl.msRequestFullscreen();
-                                        }
-                                    }}
-                                    className="absolute top-4 left-4 bg-black/40 hover:bg-black/80 backdrop-blur-md text-white rounded-full p-2.5 border border-white/20 transition-all opacity-0 group-hover:opacity-100 shadow-lg z-[120]"
-                                    title="Fullscreen"
-                                >
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                                    </svg>
-                                </button>
-                            </motion.div>
-                        </div>
+                        {videosData.map((video, index) => (
+                            <VideoSlide 
+                                key={video.id} 
+                                video={video} 
+                                index={index}
+                                isInitial={video.id === selectedVideo.id}
+                                onClose={() => setSelectedVideo(null)}
+                            />
+                        ))}
                     </motion.div>
                 )}
             </AnimatePresence>
         </div>
+    );
+};
+
+const VideoSlide = ({ video, index, isInitial, onClose }) => {
+    const slideRef = useRef(null);
+    const videoRef = useRef(null);
+    const [isInView, setIsInView] = useState(false);
+    const [showScrollCue, setShowScrollCue] = useState(index === 0 || isInitial);
+    const isVertical = ['01', '04', '07', '10', '12', '13'].includes(video.id);
+
+    useEffect(() => {
+        if (isInitial && slideRef.current) {
+            slideRef.current.scrollIntoView({ block: 'start' });
+        }
+    }, [isInitial]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsInView(entry.isIntersecting);
+                if (!entry.isIntersecting && videoRef.current) {
+                    videoRef.current.pause();
+                }
+            },
+            { threshold: 0.6 }
+        );
+
+        if (slideRef.current) observer.observe(slideRef.current);
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (isInView && videoRef.current) {
+            videoRef.current.play().catch(() => {});
+        }
+    }, [isInView]);
+
+    return (
+        <section 
+            ref={slideRef}
+            className="w-full h-[100svh] snap-start flex flex-col md:flex-row relative overflow-hidden"
+        >
+            {/* Left/Main Section: Blurred underlying page with centered Video Card */}
+            <div className="flex-grow h-[60vh] md:h-full flex items-center justify-center p-8 z-10">
+                <div className={`relative pointer-events-auto rounded-2xl md:rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.25)] bg-black flex-shrink-0 ${isVertical ? 'h-[88%] aspect-[9/16]' : 'w-full max-w-[850px] aspect-video border border-white/10'}`}>
+                    <video
+                        ref={videoRef}
+                        src={video.src.startsWith('http') ? video.src : `/videos/${video.src}`}
+                        poster={video.thumbnail}
+                        controls
+                        loop
+                        playsInline
+                        className="w-full h-full object-contain"
+                    />
+                </div>
+            </div>
+
+            {/* Right Sidebar: Full-height Narrative panel - flush with right edge */}
+            <div className="w-full md:w-[450px] lg:w-[500px] h-[40vh] md:h-full bg-white/60 backdrop-blur-2xl border-t md:border-t-0 md:border-l border-slate-200 p-8 md:p-12 flex flex-col relative z-20 shadow-[-10px_0_30px_rgba(0,0,0,0.02)]">
+                {/* Close Button inside Sidebar (as seen in photo) */}
+                <button
+                    className="absolute top-6 right-6 z-30 text-slate-400 hover:text-slate-900 bg-slate-100/50 hover:bg-slate-100 rounded-full p-2 transition-all duration-300"
+                    onClick={onClose}
+                >
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <div className="mt-8 md:mt-12 overflow-y-auto pr-2">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 className="text-3xl font-heavy tracking-tighter text-slate-900 mb-6 leading-tight">
+                            {video.title}
+                        </h2>
+                        <div className="w-16 h-[2px] bg-slate-900/10 mb-8" />
+                        <div className="text-slate-800 text-base md:text-lg leading-relaxed font-medium">
+                            <div className="inline">
+                                {video.story ? video.story : "A visual exploration focusing on the rhythm of movement and light. Part of an ongoing study into visual storytelling."}
+                                {video.behindTheScenes && (
+                                    <>
+                                        {" "}
+                                        {video.behindTheScenes}
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* Scroll Cue Animation (Dark variation) */}
+            <AnimatePresence>
+                {showScrollCue && isInView && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1, repeat: Infinity, repeatType: 'reverse' }}
+                        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[100] flex flex-col items-center gap-2 pointer-events-none"
+                    >
+                        <span className="text-[10px] uppercase tracking-[0.4em] text-slate-400 font-heavy">Scroll for more</span>
+                        <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </section>
     );
 };

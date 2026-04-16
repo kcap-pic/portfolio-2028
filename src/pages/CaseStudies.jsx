@@ -99,33 +99,30 @@ export const CaseStudies = () => {
                 </h1>
             </motion.div>
 
-            {/* Side-by-Side Flex Container */}
-            <div className="w-full max-w-7xl flex flex-col lg:flex-row items-center justify-between gap-6 relative h-[800px] md:h-[600px]">
-                <CaseStudyCard 
-                    id="sejc"
-                    side="left"
-                    title="SEJC 2026"
-                    category="Visual Journalism"
-                    summary="Redefining visual storytelling for the digital age."
-                    backgroundImage="/case-studies/titles/sejc-hero.webp"
-                    href="/case-studies/sejc-2026"
-                    isHovered={hoveredId === 'sejc'}
-                    isOtherHovered={hoveredId !== null && hoveredId !== 'sejc'}
-                    onHover={setHoveredId}
-                />
-
-                <CaseStudyCard 
-                    id="ai-series"
-                    side="right"
-                    title="AI Series"
-                    category="Tech & Motion"
-                    summary="The frontier of generative animation."
-                    backgroundImage="/case-studies/titles/ai-series-hero.png"
-                    href="/case-studies/ai-series"
-                    isHovered={hoveredId === 'ai-series'}
-                    isOtherHovered={hoveredId !== null && hoveredId !== 'ai-series'}
-                    onHover={setHoveredId}
-                />
+            {/* Coming Soon State (Requested by User) */}
+            <div className="w-full max-w-7xl flex items-center justify-center relative">
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="relative w-full max-w-4xl overflow-hidden backdrop-blur-xl border border-slate-900/10 rounded-[3rem] shadow-2xl bg-white/40 h-[400px] md:h-[500px] flex flex-col items-center justify-center p-12 text-center"
+                >
+                    <div className="absolute inset-0 z-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+                    
+                    <span className="text-[10px] md:text-xs font-heavy text-slate-400 uppercase tracking-[0.5em] mb-8">Professional Portfolio</span>
+                    <h2 className="text-5xl md:text-8xl font-heavy text-slate-900 tracking-tighter leading-none mb-8">
+                        Coming <br />
+                        <span className="font-ultra-thin">Soon.</span>
+                    </h2>
+                    <p className="text-slate-500 text-lg md:text-xl font-medium max-w-md leading-relaxed">
+                        I'm currently architecting detailed deep-dives into my major projects. Stay tuned.
+                    </p>
+                    
+                    <div className="mt-12 flex gap-4">
+                        <div className="w-2 h-2 rounded-full bg-slate-900 animate-bounce" style={{ animationDelay: '0s' }} />
+                        <div className="w-2 h-2 rounded-full bg-slate-900 animate-bounce" style={{ animationDelay: '0.2s' }} />
+                        <div className="w-2 h-2 rounded-full bg-slate-900 animate-bounce" style={{ animationDelay: '0.4s' }} />
+                    </div>
+                </motion.div>
             </div>
         </div>
     );

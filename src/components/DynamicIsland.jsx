@@ -9,6 +9,9 @@ const PRELOAD_IMAGES = [
     '/Events/Cover.jpg',
     '/thumbnails/01.webp',
     '/thumbnails/02.webp',
+    '/apil-cutout.png',
+    '/case-studies/titles/sejc-hero.webp',
+    '/case-studies/titles/ai-series-hero.png',
 ];
 
 // --- Mini Previews ---
@@ -97,13 +100,20 @@ const AwardsMiniPreview = () => (
 );
 
 const ProjectsMiniPreview = () => (
-    <div className="w-[18rem] h-[12rem] rounded-[1.2rem] bg-slate-50 border border-slate-200 p-4 flex flex-col items-center justify-center relative overflow-hidden shadow-inner">
-        <div className="absolute inset-0 opacity-40" style={{ backgroundImage: 'radial-gradient(circle at center, #64748b 1px, transparent 1px)', backgroundSize: '12px 12px' }}></div>
-        <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center mb-2 shadow-sm z-10">
-            <span className="text-slate-800 font-heavy text-lg">📁</span>
+    <div className="w-[18rem] h-[12rem] rounded-[1.2rem] bg-[#fafafa] border border-slate-200 p-2.5 flex flex-col gap-1.5 relative overflow-hidden" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '8px 8px' }}>
+        <div className="flex-[3] flex gap-1.5 w-full min-h-0">
+            <div className="flex-[1] bg-white border border-white/40 rounded-lg overflow-hidden relative shadow-sm">
+                <img src="/case-studies/titles/sejc-hero.webp" className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="sync" alt="" />
+            </div>
+            <div className="flex-[1] bg-white border border-white/40 rounded-lg overflow-hidden relative shadow-sm">
+                <img src="/case-studies/titles/ai-series-hero.png" className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="sync" alt="" />
+            </div>
         </div>
-        <h3 className="text-sm font-heavy tracking-tight text-slate-900 z-10">Case Studies</h3>
-        <p className="text-[8px] font-medium text-slate-500 uppercase tracking-widest mt-1.5 z-10">Interactive Projects</p>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#fafafa] via-[#fafafa]/40 to-transparent pointer-events-none"></div>
+        <div className="absolute bottom-3 left-0 right-0 flex flex-col items-center pointer-events-none">
+            <h3 className="text-sm font-heavy tracking-tight text-slate-900">Case Studies</h3>
+            <p className="text-[8px] font-medium text-slate-500 uppercase tracking-widest mt-0.5">Interactive Projects</p>
+        </div>
     </div>
 );
 
@@ -118,12 +128,20 @@ const ContactMiniPreview = () => (
 );
 
 const AboutMiniPreview = () => (
-    <div className="w-[18rem] h-[12rem] rounded-[1.2rem] bg-[#f1f5f9] border border-slate-200 p-4 flex flex-col items-center justify-center relative overflow-hidden shadow-inner">
-        <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mb-2 shadow-lg">
-            <span className="text-white font-heavy text-lg">@</span>
+    <div className="w-[18rem] h-[12rem] rounded-[1.2rem] bg-[#fafafa] border border-slate-200 p-0 flex flex-col items-center justify-end relative overflow-hidden shadow-inner" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '12px 12px' }}>
+        <div className="absolute inset-0 flex items-center justify-center pt-4">
+            <img 
+                src="/apil-cutout.png" 
+                className="h-[120%] w-auto object-contain drop-shadow-2xl" 
+                style={{ filter: 'saturate(1.1) contrast(1.05)' }}
+                alt="" 
+            />
         </div>
-        <h3 className="text-sm font-heavy tracking-tight text-slate-900 z-10">About Me</h3>
-        <p className="text-[8px] font-medium text-slate-500 uppercase tracking-widest mt-0.5 z-10">Personal Journey</p>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#fafafa] via-transparent to-transparent pointer-events-none"></div>
+        <div className="relative z-10 py-3 flex flex-col items-center bg-white/40 backdrop-blur-md w-full border-t border-white/20">
+            <h3 className="text-sm font-heavy tracking-tight text-slate-900">About Me</h3>
+            <p className="text-[8px] font-medium text-slate-500 uppercase tracking-widest mt-0.5">Discover My Story</p>
+        </div>
     </div>
 );
 
@@ -341,7 +359,7 @@ export const DynamicIsland = ({ currentPath }) => {
                             style={{
                                 ...glassStyle,
                                 width: showLinks 
-                                    ? (isMobile ? '180px' : '680px') 
+                                    ? (isMobile ? '180px' : '480px') 
                                     : (isMobile ? '120px' : '140px'),
                                 height: showLinks && isMobile ? 'auto' : '44px',
                                 minHeight: '44px',

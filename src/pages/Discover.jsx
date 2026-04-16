@@ -24,7 +24,7 @@ const PortfolioIcon = () => (
 
 const LinkedInIcon = () => (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
     </svg>
 );
 
@@ -38,6 +38,27 @@ const EmailIcon = () => (
 const LocationIcon = () => (
     <svg viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+    </svg>
+);
+
+const ResumeIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="16" y1="13" x2="8" y2="13" />
+        <line x1="16" y1="17" x2="8" y2="17" />
+        <polyline points="10 9 9 9 8 9" />
+    </svg>
+);
+
+const NewsIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16L4 22z" />
+        <polyline points="8 2 8 20" />
+        <line x1="12" y1="6" x2="18" y2="6" />
+        <line x1="12" y1="10" x2="18" y2="10" />
+        <line x1="12" y1="14" x2="18" y2="14" />
+        <line x1="12" y1="18" x2="16" y2="18" />
     </svg>
 );
 
@@ -83,12 +104,12 @@ const experiences = [
         description: (
             <>
                 <p className="mb-4 text-slate-900 leading-relaxed font-medium">
-                    Revolutionized the publication's digital footprint by leading a comprehensive digital growth strategy. My technical optimizations and visual direction secured 
-                    <AnimatedCounter from={0} to={58475} /> total unique visitors and over 
+                    Revolutionized the publication's digital footprint by leading a comprehensive digital growth strategy. My technical optimizations and visual direction secured
+                    <AnimatedCounter from={0} to={58475} /> total unique visitors and over
                     <AnimatedCounter from={0} to={52012} /> independent story reads.
                 </p>
                 <p className="text-slate-900 leading-relaxed font-medium">
-                    Leveraged real-time website analytics to continually pinpoint the most engaging stories, completely overhauling and improving our social media linking strategies, which systematically resulted in a massive 
+                    Leveraged real-time website analytics to continually pinpoint the most engaging stories, completely overhauling and improving our social media linking strategies, which systematically resulted in a massive
                     <AnimatedCounter from={0} to={300} suffix="%" /> increase in overall digital traffic.
                 </p>
             </>
@@ -126,7 +147,7 @@ const TimelineItem = ({ exp, index, isLast }) => {
             <div ref={ref} className="relative pl-8 md:pl-0 group/item min-h-[50svh] flex items-center py-12 md:py-24">
                 {/* Vertical Line with "Light Up" Effect */}
                 <div className="absolute left-[8px] md:left-1/2 top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2 overflow-hidden">
-                    <motion.div 
+                    <motion.div
                         initial={{ height: 0 }}
                         animate={{ height: inView ? '100%' : '0%' }}
                         transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -169,7 +190,7 @@ const TimelineItem = ({ exp, index, isLast }) => {
                     <div className={`absolute left-[8px] md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full border-4 border-white z-10 transition-all duration-500 ${inView ? 'bg-slate-900 scale-125 shadow-lg' : 'bg-slate-300 scale-100'}`}></div>
 
                     {/* Content Card */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -241,7 +262,7 @@ export const Discover = () => {
 
             <main className="max-w-7xl mx-auto px-6 relative z-10 overflow-x-hidden">
                 <StaggerContainer>
-                    
+
                     {/* SECTION 1: IDENTITY */}
                     <section id="about" className="min-h-screen pt-32 pb-20 flex flex-col justify-center snap-start">
                         <StaggerItem>
@@ -258,11 +279,11 @@ export const Discover = () => {
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                             <StaggerItem className="lg:col-span-5 flex flex-col items-center lg:items-start group">
                                 <div className="relative w-full max-w-[400px]">
-                                    <motion.img 
-                                        src="/apil-cutout.png" 
-                                        alt="Apil KC" 
+                                    <motion.img
+                                        src="/apil-cutout.png"
+                                        alt="Apil KC"
                                         className="w-full object-contain select-none transition-transform duration-700 group-hover:scale-[1.02]"
-                                        style={{ 
+                                        style={{
                                             filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.2)) saturate(1.1)',
                                             imageRendering: 'auto',
                                             // Reduced mask intensity to keep more detail
@@ -278,17 +299,47 @@ export const Discover = () => {
                             </StaggerItem>
 
                             <StaggerItem className="lg:col-span-7 flex flex-col gap-8">
-                                <motion.div 
+                                <motion.div
                                     whileHover={{ y: -5 }}
                                     className="bg-white/60 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 border border-slate-900/10 shadow-[inset_2px_2px_4px_rgba(255,255,255,0.8),0_30px_60px_-12px_rgba(0,0,0,0.1)] transition-all duration-500"
                                 >
                                     <span className="inline-block px-4 py-1.5 bg-slate-900 text-white text-[10px] font-heavy uppercase tracking-widest rounded-full mb-8">Who I Am</span>
                                     <p className="text-xl md:text-2xl text-slate-800 font-medium leading-relaxed mb-6">
-                                        I'm <strong className="font-heavy text-slate-900 text-[1.1em]">Apil KC</strong>. figuring out life and discovering myself as I go, with my main goal being successful and making my parents proud while embracing as much happiness as possible. 
+                                        I'm <strong className="font-heavy text-slate-900 text-[1.1em]">Apil KC</strong>. figuring out life and discovering myself as I go, with my main goal being successful and making my parents proud while embracing as much happiness as possible.
                                     </p>
-                                    <p className="text-lg md:text-xl text-slate-500 font-light leading-relaxed">
+                                    <p className="text-lg md:text-xl text-slate-500 font-light leading-relaxed mb-12">
                                         I'm a visual storyteller blending technical skills in Computer Science and Analytics with a passion for high-end digital production.
                                     </p>
+
+                                    {/* Quick Links (Updated to small black pills per User Request) */}
+                                    <div className="flex flex-wrap gap-3 pt-8 border-t border-slate-900/5">
+                                        <motion.a
+                                            href="/Sports/resume.pdf" target="_blank"
+                                            whileHover={{ y: -3, scale: 1.05 }}
+                                            className="px-6 py-2.5 bg-slate-900 text-white text-[10px] font-heavy uppercase tracking-widest rounded-full flex items-center gap-2 shadow-lg shadow-slate-900/20 hover:bg-slate-800 transition-all duration-300"
+                                        >
+                                            <ResumeIcon />
+                                            <span>Resume</span>
+                                        </motion.a>
+
+                                        <motion.a
+                                            href="https://www.instagram.com/apil_kc8/" target="_blank"
+                                            whileHover={{ y: -3, scale: 1.05 }}
+                                            className="px-6 py-2.5 bg-slate-900 text-white text-[10px] font-heavy uppercase tracking-widest rounded-full flex items-center gap-2 shadow-lg shadow-slate-900/20 hover:bg-slate-800 transition-all duration-300"
+                                        >
+                                            <InstagramIcon />
+                                            <span>Instagram</span>
+                                        </motion.a>
+
+                                        <motion.a
+                                            href="https://ulmhawkeyeonline.com/staff_name/apil-kc/" target="_blank"
+                                            whileHover={{ y: -3, scale: 1.05 }}
+                                            className="px-6 py-2.5 bg-slate-900 text-white text-[10px] font-heavy uppercase tracking-widest rounded-full flex items-center gap-2 shadow-lg shadow-slate-900/20 hover:bg-slate-800 transition-all duration-300"
+                                        >
+                                            <NewsIcon />
+                                            <span>Hawkeye Portfolio</span>
+                                        </motion.a>
+                                    </div>
                                 </motion.div>
                             </StaggerItem>
                         </div>
@@ -324,8 +375,8 @@ export const Discover = () => {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
                             <StaggerItem className="flex flex-col gap-4">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <motion.a 
-                                        href="mailto:apilkc0808@gmail.com" 
+                                    <motion.a
+                                        href="mailto:apilkc0808@gmail.com"
                                         whileHover={{ scale: 1.02 }}
                                         className="p-8 rounded-3xl bg-white/50 border border-slate-200 shadow-sm flex flex-col gap-3 group transition-all"
                                     >
@@ -335,8 +386,8 @@ export const Discover = () => {
                                         <span className="text-[10px] font-heavy tracking-widest uppercase text-slate-400">Email</span>
                                         <span className="text-base font-bold text-slate-900 truncate">apilkc0808@gmail.com</span>
                                     </motion.a>
-                                    
-                                    <motion.a 
+
+                                    <motion.a
                                         href="https://linkedin.com/in/apilkc08/" target="_blank" rel="noreferrer"
                                         whileHover={{ scale: 1.02 }}
                                         className="p-8 rounded-3xl bg-white/50 border border-slate-200 shadow-sm flex flex-col gap-3 group transition-all"
@@ -348,7 +399,7 @@ export const Discover = () => {
                                         <span className="text-base font-bold text-slate-900 truncate">apilkc08</span>
                                     </motion.a>
 
-                                    <motion.a 
+                                    <motion.a
                                         href="https://www.instagram.com/apil_kc8/" target="_blank" rel="noreferrer"
                                         whileHover={{ scale: 1.02 }}
                                         className="p-8 rounded-3xl bg-white/50 border border-slate-200 shadow-sm flex flex-col gap-3 group transition-all"
@@ -368,7 +419,7 @@ export const Discover = () => {
                                         <span className="text-base font-bold text-slate-900">Louisiana, US</span>
                                     </div>
                                 </div>
-                                <motion.a 
+                                <motion.a
                                     href="https://ulmhawkeyeonline.com/staff_name/apil-kc/" target="_blank" rel="noreferrer"
                                     whileHover={{ scale: 1.01 }}
                                     className="p-6 rounded-2xl bg-slate-900 text-white flex items-center justify-between"
@@ -386,11 +437,11 @@ export const Discover = () => {
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-slate-100 rounded-bl-full -z-1" />
                                     <h3 className="text-2xl font-heavy text-slate-900 mb-2">Send a Message</h3>
                                     <p className="text-slate-500 mb-8 font-medium">Have a project or collaboration in mind? let's talk.</p>
-                                    
+
                                     <form className="flex flex-col gap-5" action="https://formsubmit.co/apilkc0808@gmail.com" method="POST">
-                                        <input type="text" name="name" required className="w-full bg-slate-50 focus:bg-white border-b border-slate-200 focus:border-slate-900 px-4 py-4 outline-none transition-all placeholder:text-slate-400 font-medium" placeholder="Name" />
-                                        <input type="email" name="email" required className="w-full bg-slate-50 focus:bg-white border-b border-slate-200 focus:border-slate-900 px-4 py-4 outline-none transition-all placeholder:text-slate-400 font-medium" placeholder="Email" />
-                                        <textarea name="message" required className="w-full bg-slate-50 focus:bg-white border border-slate-200 focus:border-slate-900 px-4 py-4 rounded-xl outline-none transition-all placeholder:text-slate-400 font-medium h-32 resize-none" placeholder="How can I help you?" />
+                                        <input type="text" name="name" required className="w-full bg-slate-50 focus:bg-white border-b border-slate-200 focus:border-slate-900 px-4 py-4 outline-none transition-all placeholder:text-slate-400 font-medium text-slate-900" placeholder="Name" />
+                                        <input type="email" name="email" required className="w-full bg-slate-50 focus:bg-white border-b border-slate-200 focus:border-slate-900 px-4 py-4 outline-none transition-all placeholder:text-slate-400 font-medium text-slate-900" placeholder="Email" />
+                                        <textarea name="message" required className="w-full bg-slate-50 focus:bg-white border border-slate-200 focus:border-slate-900 px-4 py-4 rounded-xl outline-none transition-all placeholder:text-slate-400 font-medium h-32 resize-none text-slate-900" placeholder="How can I help you?" />
                                         <button className="w-full py-4 bg-slate-900 text-white rounded-full font-heavy tracking-widest uppercase text-xs hover:bg-slate-800 transition-all flex items-center justify-center gap-2 group">
                                             Send Message
                                             <span className="group-hover:translate-x-1 transition-transform">→</span>
