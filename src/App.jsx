@@ -45,16 +45,17 @@ const GlobalSwipeHandler = ({ currentPath }) => {
     let lockSwipe = false;
 
     const handleTouchStart = (e) => {
-      touchStartY = e.clientY;
+      touchStartY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
       isPulling = false;
       setSwipeCue(null);
     };
 
     const handleTouchMove = (e) => {
       // Ignore if user is selecting text or scrolling with multiple fingers
-      if (lockSwipe || e.buttons !== 1 && e.pointerType === 'mouse') return;
+      if (lockSwipe) return;
+      if (!e.type.includes('touch') && e.buttons !== 1) return;
       
-      const touchCurrentY = e.clientY;
+      const touchCurrentY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
       const deltaY = touchStartY - touchCurrentY;
 
       // Check boundaries - use a slight buffer for different mobile behaviors
@@ -82,7 +83,7 @@ const GlobalSwipeHandler = ({ currentPath }) => {
           return;
       }
       
-      const touchCurrentY = e.clientY;
+      const touchCurrentY = e.type.includes('touch') ? e.changedTouches[0].clientY : e.clientY;
       const deltaY = touchStartY - touchCurrentY;
 
       const isAtTop = window.scrollY <= 10;
@@ -100,14 +101,23 @@ const GlobalSwipeHandler = ({ currentPath }) => {
       setTimeout(() => { lockSwipe = false; }, 800);
     };
 
-    window.addEventListener('pointerdown', handleTouchStart, { passive: true });
-    window.addEventListener('pointermove', handleTouchMove, { passive: true });
-    window.addEventListener('pointerup', handleTouchEnd, { passive: true });
+    // Mobile touch events
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    
+    // Desktop mouse events (for dev emulation)
+    window.addEventListener('mousedown', handleTouchStart, { passive: true });
+    window.addEventListener('mousemove', handleTouchMove, { passive: true });
+    window.addEventListener('mouseup', handleTouchEnd, { passive: true });
 
     return () => {
-      window.removeEventListener('pointerdown', handleTouchStart);
-      window.removeEventListener('pointermove', handleTouchMove);
-      window.removeEventListener('pointerup', handleTouchEnd);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('mousedown', handleTouchStart);
+      window.removeEventListener('mousemove', handleTouchMove);
+      window.removeEventListener('mouseup', handleTouchEnd);
     };
   }, [currentPath]);
 

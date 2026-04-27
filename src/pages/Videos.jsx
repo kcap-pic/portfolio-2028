@@ -208,11 +208,12 @@ export const Videos = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] bg-white/10 backdrop-blur-lg overflow-y-auto snap-y snap-mandatory scroll-smooth"
+                        className="fixed inset-0 z-[100] bg-[#fafafa] overflow-y-auto snap-y snap-mandatory"
                         onKeyDown={(e) => {
                             if (e.key === 'Escape') setSelectedVideo(null);
                         }}
                     >
+                        <div className="fixed inset-0 z-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#64748b 2px, transparent 2px)', backgroundSize: '64px 64px', animation: 'moveDots 8s linear infinite' }}></div>
                         {videosData.map((video, index) => (
                             <VideoSlide 
                                 key={video.id} 
@@ -268,9 +269,19 @@ const VideoSlide = ({ video, index, isInitial, onClose }) => {
             ref={slideRef}
             className="w-full h-[100svh] snap-start flex flex-col md:flex-row relative overflow-hidden"
         >
-            {/* Left/Main Section: Blurred underlying page with centered Video Card */}
-            <div className="h-[60vh] md:h-full md:flex-grow flex items-center justify-center p-6 md:p-8 z-10 flex-shrink-0">
-                <div className={`relative pointer-events-auto rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.25)] bg-black w-full h-full md:w-auto md:h-auto ${isVertical ? 'aspect-[9/16] md:h-[88%]' : 'max-w-[850px] aspect-video border border-white/10'}`}>
+            {/* Close Button Top Right */}
+            <button
+                className="absolute top-6 right-6 z-[150] text-slate-500 hover:text-slate-900 bg-white/60 hover:bg-white rounded-full p-2 transition-all duration-300 backdrop-blur-md shadow-sm border border-slate-200"
+                onClick={onClose}
+            >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            {/* Left/Main Section: Video Floating */}
+            <div className="h-[55vh] md:h-full md:flex-grow flex items-end md:items-center justify-center p-6 md:p-8 z-10 flex-shrink-0 relative">
+                <div className={`relative pointer-events-auto rounded-3xl md:rounded-[2rem] overflow-hidden shadow-[0_25px_50px_rgba(0,0,0,0.15)] bg-slate-900 w-full h-[95%] md:w-auto md:h-auto ${isVertical ? 'aspect-[9/16] md:h-[88%]' : 'max-w-[850px] aspect-video border border-slate-800'}`}>
                     <video
                         ref={videoRef}
                         src={video.src.startsWith('http') ? video.src : `/videos/${video.src}`}
@@ -283,31 +294,21 @@ const VideoSlide = ({ video, index, isInitial, onClose }) => {
                 </div>
             </div>
 
-            {/* Right Sidebar: Narrative panel - takes remaining flex-grow on mobile */}
-            <div className="flex-grow w-full md:w-[450px] lg:w-[500px] bg-white/60 backdrop-blur-2xl border-t md:border-t-0 md:border-l border-slate-200 p-8 md:p-12 flex flex-col relative z-20 shadow-[-10px_0_30px_rgba(0,0,0,0.02)]">
-                {/* Close Button inside Sidebar */}
-                <button
-                    className="absolute top-6 right-6 z-30 text-slate-400 hover:text-slate-900 bg-slate-100/50 hover:bg-slate-100 rounded-full p-2 transition-all duration-300"
-                    onClick={onClose}
-                >
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-
-                <div className="mt-8 md:mt-12 overflow-y-auto pr-2">
+            {/* Right Sidebar / Bottom Caption: Glassmorphic Floating Card */}
+            <div className="flex-grow w-full md:w-[450px] lg:w-[500px] p-6 pb-12 md:p-12 flex flex-col relative z-20 justify-start md:justify-center items-center md:items-start">
+                <div className="w-full max-w-lg bg-white/40 backdrop-blur-2xl border border-white/60 rounded-3xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] h-full overflow-y-auto">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-3xl font-heavy tracking-tighter text-slate-900 mb-6 leading-tight">
+                        <h2 className="text-2xl md:text-3xl font-heavy tracking-tighter text-slate-900 mb-4 md:mb-6 leading-tight">
                             {video.title}
                         </h2>
-                        <div className="w-16 h-[2px] bg-slate-900/10 mb-8" />
-                        <div className="text-slate-800 text-base md:text-lg leading-relaxed font-medium">
+                        <div className="w-12 md:w-16 h-[2px] bg-slate-900/10 mb-6 md:mb-8" />
+                        <div className="text-slate-700 text-sm md:text-base leading-relaxed font-medium">
                             <div className="inline">
-                                {video.story ? video.story : "A visual exploration focusing on the rhythm of movement and light. Part of an ongoing study into visual storytelling."}
+                                {video.story ? video.story : "This caption is a placeholder captions are updating."}
                                 {video.behindTheScenes && (
                                     <>
                                         {" "}
