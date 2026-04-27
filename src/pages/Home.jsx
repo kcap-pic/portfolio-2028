@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { AnimatedCounter } from '../components/AnimatedCounter';
 import { SneakPeekWidget } from '../components/SneakPeekWidget';
 import { StaggerContainer, StaggerItem } from '../components/StaggerAnimations';
+import { Helmet } from 'react-helmet-async';
 import { MagneticCardFixed } from '../components/MagneticCardFixed';
 import { MediaSection, ProfessionalSection, ConnectSection } from '../components/NavigationalBento';
 
@@ -151,6 +152,9 @@ export const Home = () => {
 
     return (
         <div className="w-full h-screen overflow-hidden relative">
+            <Helmet>
+                <title>Apil KC | Digital Media Strategist & Photographer</title>
+            </Helmet>
             <div className="fixed inset-0 w-full h-full z-[-10] overflow-hidden">
                 <motion.div
                     initial={{ scale: 1 }}
@@ -207,7 +211,7 @@ export const Home = () => {
                     <div className="absolute top-[65%] md:top-[55%] right-6 md:right-12 xl:right-20 z-20 flex flex-col items-end max-w-[90vw] md:max-w-4xl pointer-events-none">
                         
                         {/* Primary Hero: APIL KC */}
-                        <motion.div className="flex mb-2 justify-end">
+                        <motion.h1 className="flex mb-2 justify-end" aria-label="Apil KC">
                             {"APIL KC".split("").map((char, i) => (
                                 <motion.span
                                     key={i}
@@ -223,7 +227,7 @@ export const Home = () => {
                                     {char === " " ? "\u00A0" : char}
                                 </motion.span>
                             ))}
-                        </motion.div>
+                        </motion.h1>
 
                         {/* Secondary Hero: Typewriter Roles */}
                         <div className="flex flex-col items-end mt-1">

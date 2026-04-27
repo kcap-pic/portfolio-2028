@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { StaggerContainer, StaggerItem } from '../components/StaggerAnimations';
 import { photographyCategories } from '../data/photography';
 import photoMetadata from '../data/photo-metadata.json';
@@ -22,7 +23,7 @@ const LightboxOverlay = ({ currentPhoto, allPhotos, onClose, onNext, onPrev }) =
             <div className="absolute top-0 bottom-0 right-0 w-1/2 z-10 cursor-e-resize" onClick={onNext}></div>
 
             <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
-                <img src={`/${currentPhoto}`} className="max-w-full max-h-full object-contain pointer-events-auto shadow-2xl rounded-sm" />
+                <img src={`/${currentPhoto}`} alt="Apil KC Sports Photography Showcase" className="max-w-full max-h-full object-contain pointer-events-auto shadow-2xl rounded-sm" />
             </div>
 
             <div className="absolute bottom-6 left-6 md:left-12 flex flex-col z-20 pointer-events-none">
@@ -80,7 +81,7 @@ const HoverScrollRow = ({ rowData, rowIndex, onOpenLightbox }) => {
                 {displayPhotos.map((src, idx) => {
                     return (
                         <div key={idx} onClick={() => onOpenLightbox(src, rowData.photos)} className={`shrink-0 h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] hover:h-[120px] sm:hover:h-[160px] md:hover:h-[200px] lg:hover:h-[240px] rounded-none group hover:z-50 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer bg-slate-200 min-w-[40px] flex items-center justify-center hover:mx-1 md:hover:mx-2`}>
-                            <img src={`/${src}`} className="h-full w-auto max-w-none object-contain transition-all duration-700 pointer-events-none" />
+                            <img src={`/${src}`} alt="Apil KC Sports & Event Photography" className="h-full w-auto max-w-none object-contain transition-all duration-700 pointer-events-none" />
                         </div>
                     );
                 })}
@@ -97,6 +98,12 @@ export const PhotographyIndex = () => {
 
     return (
         <div className="w-full min-h-[100svh] pt-16 md:pt-20 pb-48 px-6 max-w-7xl mx-auto relative z-10 pointer-events-auto">
+            <Helmet>
+                <title>Sports & Event Photography | Apil KC</title>
+                <meta name="description" content="View the professional sports photography and event portfolio of Apil KC. Emphasizing compelling action shots, team narratives, and cinematic composition." />
+                <meta property="og:title" content="Sports & Event Photography | Apil KC" />
+                <meta property="og:description" content="View the professional sports photography and event portfolio of Apil KC." />
+            </Helmet>
             <span className="hidden snap-y snap-mandatory"></span>
             <div className="fixed inset-0 bg-[#fafafa] -z-[2] pointer-events-none"></div>
             <div className="fixed inset-0 -z-[1] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#64748b 2px, transparent 2px)', backgroundSize: '64px 64px', animation: 'moveDots 8s linear infinite' }}></div>
@@ -204,6 +211,11 @@ export const PhotographyGallery = ({ categoryId }) => {
 
     return (
         <div className="w-full min-h-[100svh] relative bg-[#fafafa] z-10 pointer-events-auto">
+            <Helmet>
+                <title>Live Gallery | Sports Photography by Apil KC</title>
+                <meta name="description" content="Immersive live gallery featuring elite sports photography and high-tier cinematic snapshots produced by Digital Media Strategist, Apil KC." />
+                <meta property="og:title" content="Live Gallery | Sports Photography by Apil KC" />
+            </Helmet>
             <div className="fixed inset-0 bg-[#fafafa] -z-[2] pointer-events-none"></div>
             <div className="fixed inset-0 -z-[1] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#64748b 2px, transparent 2px)', backgroundSize: '64px 64px', animation: 'moveDots 8s linear infinite' }}></div>
 
