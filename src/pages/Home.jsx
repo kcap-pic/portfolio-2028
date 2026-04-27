@@ -204,7 +204,7 @@ export const Home = () => {
                     */}
 
                     {/* Consolidated Hero Stack — Right Aligned */}
-                    <div className="absolute top-[50%] right-6 md:right-12 xl:right-20 z-20 flex flex-col items-end max-w-[90vw] md:max-w-4xl pointer-events-none">
+                    <div className="absolute top-[65%] md:top-[55%] right-6 md:right-12 xl:right-20 z-20 flex flex-col items-end max-w-[90vw] md:max-w-4xl pointer-events-none">
                         
                         {/* Primary Hero: APIL KC */}
                         <motion.div className="flex mb-2 justify-end">

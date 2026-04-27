@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // All images used in previews — preloaded on mount so they're cached before hover
 const PRELOAD_IMAGES = [
-    '/Sports/Soccer/IMG_7559.jpg',
-    '/Sports/Basketball/206-IMG_0057.jpg',
+    '/Sports/Soccer/1-IMG_7559.jpg',
+    '/Sports/Basketball/133-IMG_7228.jpg',
     '/Sports/Football/75-IMG_0074.jpg',
     '/Events/Cover.jpg',
     '/thumbnails/01.webp',
@@ -20,10 +20,10 @@ const PhotographyMiniPreview = () => (
     <div className="w-[18rem] h-[12rem] rounded-[1.2rem] bg-[#fafafa] border border-slate-200 p-2.5 flex flex-col gap-1.5 relative overflow-hidden" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '8px 8px' }}>
         <div className="flex-[2] flex gap-1.5 w-full min-h-0">
             <div className="flex-[3] bg-white border border-white/40 rounded-lg overflow-hidden relative shadow-sm">
-                <img src="/Sports/Soccer/IMG_7559.jpg" className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="sync" alt="" />
+                <img src="/Sports/Soccer/1-IMG_7559.jpg" className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="sync" alt="" />
             </div>
             <div className="flex-[2] bg-white border border-white/40 rounded-lg overflow-hidden relative shadow-sm">
-                <img src="/Sports/Basketball/206-IMG_0057.jpg" className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="sync" alt="" />
+                <img src="/Sports/Basketball/133-IMG_7228.jpg" className="absolute inset-0 w-full h-full object-cover" loading="eager" decoding="sync" alt="" />
             </div>
         </div>
         <div className="flex-[2] flex gap-1.5 w-full min-h-0">
@@ -359,7 +359,7 @@ export const DynamicIsland = ({ currentPath }) => {
                             style={{
                                 ...glassStyle,
                                 width: showLinks 
-                                    ? (isMobile ? '180px' : '480px') 
+                                    ? (isMobile ? '135px' : '480px') 
                                     : (isMobile ? '120px' : '140px'),
                                 height: showLinks && isMobile ? 'auto' : '44px',
                                 minHeight: '44px',

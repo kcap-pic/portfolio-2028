@@ -269,8 +269,8 @@ const VideoSlide = ({ video, index, isInitial, onClose }) => {
             className="w-full h-[100svh] snap-start flex flex-col md:flex-row relative overflow-hidden"
         >
             {/* Left/Main Section: Blurred underlying page with centered Video Card */}
-            <div className="flex-grow h-[60vh] md:h-full flex items-center justify-center p-8 z-10">
-                <div className={`relative pointer-events-auto rounded-2xl md:rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.25)] bg-black flex-shrink-0 ${isVertical ? 'h-[88%] aspect-[9/16]' : 'w-full max-w-[850px] aspect-video border border-white/10'}`}>
+            <div className="h-[60vh] md:h-full md:flex-grow flex items-center justify-center p-6 md:p-8 z-10 flex-shrink-0">
+                <div className={`relative pointer-events-auto rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.25)] bg-black w-full h-full md:w-auto md:h-auto ${isVertical ? 'aspect-[9/16] md:h-[88%]' : 'max-w-[850px] aspect-video border border-white/10'}`}>
                     <video
                         ref={videoRef}
                         src={video.src.startsWith('http') ? video.src : `/videos/${video.src}`}
@@ -283,9 +283,9 @@ const VideoSlide = ({ video, index, isInitial, onClose }) => {
                 </div>
             </div>
 
-            {/* Right Sidebar: Full-height Narrative panel - flush with right edge */}
-            <div className="w-full md:w-[450px] lg:w-[500px] h-[40vh] md:h-full bg-white/60 backdrop-blur-2xl border-t md:border-t-0 md:border-l border-slate-200 p-8 md:p-12 flex flex-col relative z-20 shadow-[-10px_0_30px_rgba(0,0,0,0.02)]">
-                {/* Close Button inside Sidebar (as seen in photo) */}
+            {/* Right Sidebar: Narrative panel - takes remaining flex-grow on mobile */}
+            <div className="flex-grow w-full md:w-[450px] lg:w-[500px] bg-white/60 backdrop-blur-2xl border-t md:border-t-0 md:border-l border-slate-200 p-8 md:p-12 flex flex-col relative z-20 shadow-[-10px_0_30px_rgba(0,0,0,0.02)]">
+                {/* Close Button inside Sidebar */}
                 <button
                     className="absolute top-6 right-6 z-30 text-slate-400 hover:text-slate-900 bg-slate-100/50 hover:bg-slate-100 rounded-full p-2 transition-all duration-300"
                     onClick={onClose}

@@ -28,6 +28,13 @@
   will-change: transform;
 }
 
+@media (max-width: 768px) {
+  .bg-photo {
+    /* Bring the ball towards the center on mobile layouts */
+    background-position: 70% center;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
