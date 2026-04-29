@@ -26,6 +26,11 @@ Object.keys(imagesRaw).forEach(assetPath => {
         }
     }
 
+    // Skip thumbnail files so they aren't treated as separate gallery photos
+    if (assetPath.toLowerCase().endsWith('_thumb.webp')) {
+        return;
+    }
+
     // Strip "/public/" from the key to get the public-relative path, e.g. "Sports/Baseball/IMG_1.webp"
     const cleanedPath = assetPath.replace('/public/', '');
     const pathParts = cleanedPath.split('/');

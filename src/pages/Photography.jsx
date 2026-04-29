@@ -82,9 +82,12 @@ const HoverScrollRow = ({ rowData, rowIndex, onOpenLightbox }) => {
                     style={{ animation: `${rowIndex % 2 === 0 ? 'scrollLeft' : 'scrollRight'} ${dynamicDuration}s linear infinite` }}
                 >
                     {displayPhotos.map((src, idx) => {
+                        // For the scrolling gallery, serve the compressed thumbnail. 
+                        // The original src is still passed to onOpenLightbox.
+                        const thumbSrc = src.replace(/\.(webp|jpg|jpeg|png)$/i, '_thumb.webp');
                         return (
                             <div key={idx} onClick={() => onOpenLightbox(src, rowData.photos)} className={`shrink-0 h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] hover:h-[120px] sm:hover:h-[160px] md:hover:h-[200px] lg:hover:h-[240px] rounded-none group hover:z-50 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer bg-slate-200 min-w-[40px] flex items-center justify-center hover:mx-1 md:hover:mx-2`}>
-                                <img src={`/${src}`} alt="Apil KC Sports & Event Photography" loading="lazy" className="h-full w-auto max-w-none object-contain transition-all duration-700 pointer-events-none" />
+                                <img src={`/${thumbSrc}`} alt="Apil KC Sports & Event Photography" loading="lazy" className="h-full w-auto max-w-none object-contain transition-all duration-700 pointer-events-none" />
                             </div>
                         );
                     })}
