@@ -282,6 +282,7 @@ export const Discover = () => {
                                     <motion.img
                                         src="/apil-cutout.png"
                                         alt="Apil KC"
+                                        loading="lazy"
                                         className="w-full object-contain select-none transition-transform duration-700 group-hover:scale-[1.02]"
                                         style={{
                                             filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.2)) saturate(1.1)',

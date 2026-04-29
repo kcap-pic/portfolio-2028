@@ -96,6 +96,7 @@ const VideoCard = ({ video, index, onClick, hoveredId, setHoveredId }) => {
                         <img
                             src={video.thumbnail}
                             alt={video.title}
+                            loading="lazy"
                             className={`absolute inset-0 w-full h-full object-cover z-20 pointer-events-none transition-all duration-[600ms] ease-in-out ${isPlaying ? 'opacity-0 scale-102 blur-sm' : 'opacity-100 scale-100 blur-0'}`}
                         />
 
@@ -103,6 +104,7 @@ const VideoCard = ({ video, index, onClick, hoveredId, setHoveredId }) => {
                         <video
                             ref={videoRef}
                             src={video.src.startsWith('http') ? video.src : `/videos/${video.src}`}
+                            preload="none"
                             muted={isMuted}
                             playsInline
                             className={`w-full h-full object-cover relative z-10 transition-opacity duration-[600ms] ${isPlaying ? 'opacity-100' : 'opacity-0'}`}

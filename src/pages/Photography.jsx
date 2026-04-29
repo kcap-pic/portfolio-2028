@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { StaggerContainer, StaggerItem } from '../components/StaggerAnimations';
 import { photographyCategories } from '../data/photography';
@@ -65,27 +65,31 @@ const LightboxOverlay = ({ currentPhoto, allPhotos, onClose, onNext, onPrev }) =
 
 const HoverScrollRow = ({ rowData, rowIndex, onOpenLightbox }) => {
     // Repeat photos just enough for a seamless marquee loop (need at least 2× for the -50% trick)
-    const displayPhotos = Array(3).fill(rowData.photos).flat();
+    const displayPhotos = Array(2).fill(rowData.photos).flat();
     const dynamicDuration = rowData.photos.length * 40;
+    const ref = useRef(null);
+    const inView = useInView(ref, { margin: "400px 0px" });
 
     return (
-        <div className="w-full h-[180px] sm:h-[220px] md:h-[260px] lg:h-[300px] relative select-none flex flex-col justify-center overflow-hidden">
+        <div ref={ref} className="w-full h-[180px] sm:h-[220px] md:h-[260px] lg:h-[300px] relative select-none flex flex-col justify-center overflow-hidden">
             <style>{`
                 @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
                 @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
             `}</style>
-            <div
-                className="marquee-track flex items-center gap-0 w-max h-full"
-                style={{ animation: `${rowIndex % 2 === 0 ? 'scrollLeft' : 'scrollRight'} ${dynamicDuration}s linear infinite` }}
-            >
-                {displayPhotos.map((src, idx) => {
-                    return (
-                        <div key={idx} onClick={() => onOpenLightbox(src, rowData.photos)} className={`shrink-0 h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] hover:h-[120px] sm:hover:h-[160px] md:hover:h-[200px] lg:hover:h-[240px] rounded-none group hover:z-50 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer bg-slate-200 min-w-[40px] flex items-center justify-center hover:mx-1 md:hover:mx-2`}>
-                            <img src={`/${src}`} alt="Apil KC Sports & Event Photography" className="h-full w-auto max-w-none object-contain transition-all duration-700 pointer-events-none" />
-                        </div>
-                    );
-                })}
-            </div>
+            {inView && (
+                <div
+                    className="marquee-track flex items-center gap-0 w-max h-full"
+                    style={{ animation: `${rowIndex % 2 === 0 ? 'scrollLeft' : 'scrollRight'} ${dynamicDuration}s linear infinite` }}
+                >
+                    {displayPhotos.map((src, idx) => {
+                        return (
+                            <div key={idx} onClick={() => onOpenLightbox(src, rowData.photos)} className={`shrink-0 h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] hover:h-[120px] sm:hover:h-[160px] md:hover:h-[200px] lg:hover:h-[240px] rounded-none group hover:z-50 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer bg-slate-200 min-w-[40px] flex items-center justify-center hover:mx-1 md:hover:mx-2`}>
+                                <img src={`/${src}`} alt="Apil KC Sports & Event Photography" loading="lazy" className="h-full w-auto max-w-none object-contain transition-all duration-700 pointer-events-none" />
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
         </div>
     );
 };
