@@ -70,7 +70,7 @@ const TypewriterLoop = ({ words, prefix = "", delayStart = 0, typingSpeed = 100,
     return (
         <span className="inline-flex relative font-bold drop-shadow-[0_0_25px_rgba(255,255,255,0.6)]">
             {/* The hidden text creates the full width */}
-            <span className="whitespace-nowrap opacity-0 pointer-events-none select-none block px-1">
+            <span className="whitespace-nowrap invisible pointer-events-none select-none block px-1">
                 <motion.span 
                     animate={{ opacity: hasStarted ? 0.4 : 0 }}
                     transition={{ duration: 0.5 }}
