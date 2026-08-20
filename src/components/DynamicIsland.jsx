@@ -158,11 +158,11 @@ const PREVIEW_MAP = {
 // --- Dynamic Island Main Component ---
 
 export const DynamicIsland = ({ currentPath }) => {
-    const [phase, setPhase] = useState(currentPath === '/' ? 'links' : 'logo');
+    const [phase, setPhase] = useState('links');
     const [hoveredLink, setHoveredLink] = useState(null);
     const [isShining, setIsShining] = useState(false);
     const [isBouncing, setIsBouncing] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
     const hideTimer = useRef(null);
     const phaseTimer = useRef(null);
     const hoverTimer = useRef(null);
@@ -478,12 +478,13 @@ export const DynamicIsland = ({ currentPath }) => {
 
                             {/* Logo pill — opacity-only transition */}
                             <div
-                                className="absolute inset-0 flex items-center justify-center gap-2 px-5 py-2.5"
+                                className="absolute inset-0 flex items-center justify-center gap-2 px-5 py-2.5 cursor-pointer"
                                 style={{
                                     opacity: showLinks ? 0 : 1,
                                     transition: 'opacity 0.2s ease',
                                     pointerEvents: showLinks ? 'none' : 'auto',
                                 }}
+                                onClick={() => setPhase('links')}
                                 onMouseEnter={() => setPhase('links')}
                             >
                                  <span className="w-1.5 h-1.5 rounded-full block" style={{ background: isLightPage ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)' }} />
