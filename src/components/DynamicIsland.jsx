@@ -359,12 +359,12 @@ export const DynamicIsland = ({ currentPath }) => {
                             style={{
                                 ...glassStyle,
                                 width: showLinks 
-                                    ? (isMobile ? '135px' : '480px') 
+                                    ? (isMobile ? '95vw' : '480px') 
                                     : (isMobile ? '120px' : '140px'),
-                                height: showLinks && isMobile ? 'auto' : '44px',
+                                height: '44px',
                                 minHeight: '44px',
                                 transition: 'width 0.45s cubic-bezier(0.76, 0, 0.24, 1), height 0.3s ease, border-radius 0.3s ease',
-                                padding: showLinks && isMobile ? '16px 8px' : '0 8px',
+                                padding: '0 8px',
                             }}
                             onMouseEnter={() => {
                                 clearTimeout(hideTimer.current);
@@ -383,6 +383,10 @@ export const DynamicIsland = ({ currentPath }) => {
                                 }
                             }}
                         >
+                            <style>{`
+                                .hide-scrollbar::-webkit-scrollbar { display: none; }
+                                .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+                            `}</style>
                             {/* Shine overlay (clipped to the pill) */}
                             <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none z-30">
                                 <AnimatePresence>
@@ -399,15 +403,14 @@ export const DynamicIsland = ({ currentPath }) => {
 
                             {/* Nav links row */}
                             <div
-                                className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${isMobile ? 'flex-col gap-0 relative h-auto py-2' : 'gap-1 px-3'}`}
+                                className={`absolute inset-0 flex items-center justify-start sm:justify-center transition-all duration-300 gap-1 px-2 sm:px-3 overflow-x-auto snap-x snap-mandatory hide-scrollbar`}
                                 style={{
                                     opacity: showLinks ? 1 : 0,
                                     pointerEvents: showLinks ? 'auto' : 'none',
-                                    position: isMobile && showLinks ? 'relative' : 'absolute',
                                 }}
                             >
                                 {links.map((link) => (
-                                    <div key={link.id} className="relative">
+                                    <div key={link.id} className="relative shrink-0 snap-center">
                                         <a
                                             href={link.href || undefined}
                                             onMouseEnter={() => handleMouseEnter(link.id)}
@@ -429,7 +432,7 @@ export const DynamicIsland = ({ currentPath }) => {
                                                     : isActive(link.href)
                         ? isLightPage ? 'bg-slate-900/10 text-slate-900 cursor-pointer' : 'bg-white/20 text-white cursor-pointer'
                         : isLightPage ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-900/5 cursor-pointer' : 'text-white/60 hover:text-white hover:bg-white/10 cursor-pointer'
-                    } ${isMobile ? 'w-full text-center py-2 px-4' : 'px-3 py-1.5'}`}
+                    }`}
                                     >
                                             {link.label}
                                         </a>

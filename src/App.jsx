@@ -2,19 +2,19 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DynamicIsland } from './components/DynamicIsland';
 
-const Home = React.lazy(() => import('./pages/Home').then(module => ({ default: module.Home })));
-const WorkPage = React.lazy(() => import('./pages/WorkPage').then(module => ({ default: module.WorkPage })));
-const PhotographyIndex = React.lazy(() => import('./pages/Photography').then(module => ({ default: module.PhotographyIndex })));
-const PhotographyGallery = React.lazy(() => import('./pages/Photography').then(module => ({ default: module.PhotographyGallery })));
-const Videos = React.lazy(() => import('./pages/Videos').then(module => ({ default: module.Videos })));
-const Experience = React.lazy(() => import('./pages/Discover').then(module => ({ default: module.Discover })));
-const Awards = React.lazy(() => import('./pages/Awards').then(module => ({ default: module.Awards })));
-const Contact = React.lazy(() => import('./pages/Discover').then(module => ({ default: module.Discover })));
-const About = React.lazy(() => import('./pages/Discover').then(module => ({ default: module.Discover })));
-const Discover = React.lazy(() => import('./pages/Discover').then(module => ({ default: module.Discover })));
-const CaseStudies = React.lazy(() => import('./pages/CaseStudies').then(module => ({ default: module.CaseStudies })));
-const CaseStudySEJC = React.lazy(() => import('./pages/CaseStudySEJC').then(module => ({ default: module.CaseStudySEJC })));
-const CaseStudyAI = React.lazy(() => import('./pages/CaseStudyAI').then(module => ({ default: module.CaseStudyAI })));
+import { Home } from './pages/Home';
+import { WorkPage } from './pages/WorkPage';
+import { PhotographyIndex, PhotographyGallery } from './pages/Photography';
+import { Videos } from './pages/Videos';
+import { Discover } from './pages/Discover';
+import { Awards } from './pages/Awards';
+import { CaseStudies } from './pages/CaseStudies';
+import { CaseStudySEJC } from './pages/CaseStudySEJC';
+import { CaseStudyAI } from './pages/CaseStudyAI';
+
+const Experience = Discover;
+const Contact = Discover;
+const About = Discover;
 
 
 const PageLoader = () => (
@@ -89,16 +89,16 @@ const GlobalSwipeHandler = ({ currentPath }) => {
       const isAtTop = window.scrollY <= 10;
       const isAtBottom = Math.ceil(window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 10);
 
-      if (deltaY > 100 && isAtBottom && currentIndex < routes.length - 1) {
+      if (deltaY > 75 && isAtBottom && currentIndex < routes.length - 1) {
           lockSwipe = true;
           window.location.hash = routes[currentIndex + 1];
-      } else if (deltaY < -100 && isAtTop && currentIndex > 0) {
+      } else if (deltaY < -75 && isAtTop && currentIndex > 0) {
           lockSwipe = true;
           window.location.hash = routes[currentIndex - 1];
       }
       
       setSwipeCue(null);
-      setTimeout(() => { lockSwipe = false; }, 800);
+      setTimeout(() => { lockSwipe = false; }, 500);
     };
 
     // Mobile touch events
@@ -169,71 +169,29 @@ const App = () => {
       <DynamicIsland currentPath={currentPath} />
       <GlobalSwipeHandler currentPath={currentPath} />
       <main className="w-full flex-grow relative">
-        <Suspense fallback={<PageLoader />}>
-          <AnimatePresence mode="wait">
-            {currentPath === '/' && (
-              <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-                <Home />
-              </motion.div>
-            )}
-            {currentPath === '/work' && (
-              <motion.div key="work" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-                <WorkPage />
-              </motion.div>
-            )}
-            {currentPath === '/photography' && (
-              <motion.div key="photography_index" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-                <PhotographyIndex />
-              </motion.div>
-            )}
-            {currentPath.startsWith('/photography/') && (
-              <motion.div key={`gallery-${currentPath}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-                <PhotographyGallery categoryId={currentPath.split('/')[2]} />
-              </motion.div>
-            )}
-            {currentPath === '/videos' && (
-              <motion.div key="videos" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-                <Videos />
-              </motion.div>
-            )}
-
-            {currentPath === '/discover' && (
-              <motion.div key="discover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-                <Discover />
-              </motion.div>
-            )}
-            {currentPath === '/about' && (
-              <motion.div key="about" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-                <About />
-              </motion.div>
-            )}
-            {currentPath === '/experience' && (
-              <motion.div key="experience" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-                <Experience />
-              </motion.div>
-            )}
-            {currentPath === '/contact' && (
-              <motion.div key="contact" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-                <Contact />
-              </motion.div>
-            )}
-            {currentPath === '/case-studies' && (
-              <motion.div key="case-studies" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
-                <CaseStudies />
-              </motion.div>
-            )}
-            {currentPath === '/case-studies/sejc-2026' && (
-              <motion.div key="sejc" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }}>
-                <CaseStudySEJC />
-              </motion.div>
-            )}
-            {currentPath === '/case-studies/ai-series' && (
-              <motion.div key="ai-series" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }}>
-                <CaseStudyAI />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </Suspense>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentPath}
+            initial={{ opacity: 0, y: 15, scale: 0.99 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -15, scale: 0.99 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full h-full"
+          >
+            {currentPath === '/' && <Home />}
+            {currentPath === '/work' && <WorkPage />}
+            {currentPath === '/photography' && <PhotographyIndex />}
+            {currentPath.startsWith('/photography/') && <PhotographyGallery categoryId={currentPath.split('/')[2]} />}
+            {currentPath === '/videos' && <Videos />}
+            {currentPath === '/discover' && <Discover />}
+            {currentPath === '/about' && <About />}
+            {currentPath === '/experience' && <Experience />}
+            {currentPath === '/contact' && <Contact />}
+            {currentPath === '/case-studies' && <CaseStudies />}
+            {currentPath === '/case-studies/sejc-2026' && <CaseStudySEJC />}
+            {currentPath === '/case-studies/ai-series' && <CaseStudyAI />}
+          </motion.div>
+        </AnimatePresence>
       </main>
     </div>
   );
