@@ -80,10 +80,44 @@ const AnimatedCounter = ({ from, to, duration = 2, suffix = "", prefix = "" }) =
 
 const experiences = [
     {
+        title: "Editor in Chief",
+        company: "The Hawkeye (ULM student publication)",
+        location: "Monroe, LA",
+        date: "July 2026 - Present",
+        description: (
+            <>
+                <p className="mb-4 text-slate-900 leading-relaxed font-medium">
+                    Directing overall editorial vision, publication strategy, and multimedia storytelling for The Hawkeye. Managing the editorial team across news, sports, feature, and visual coverage to deliver impactful campus journalism.
+                </p>
+                <p className="text-slate-900 leading-relaxed font-medium">
+                    Overseeing the full print and digital publication cycles, setting editorial standards, and guiding multi-platform digital content distribution to maximize student and faculty readership.
+                </p>
+            </>
+        ),
+        skills: [["Editorial Leadership"], ["Publication Strategy"], ["Visual Journalism", "Content Direction"], ["Team Management", "Digital Growth"]]
+    },
+    {
+        title: "Marketing Coordinator",
+        company: "Achievers of Louisiana",
+        location: "Monroe, LA",
+        date: "June 2026 - Present",
+        description: (
+            <>
+                <p className="mb-4 text-slate-900 leading-relaxed font-medium">
+                    Leading comprehensive marketing campaigns and brand development initiatives for Achievers of Louisiana. Developing multi-channel promotional strategies to drive community engagement and expand organizational outreach.
+                </p>
+                <p className="text-slate-900 leading-relaxed font-medium">
+                    Coordinating cross-functional creative assets, digital campaigns, and community communications to strengthen brand positioning across digital and print media platforms.
+                </p>
+            </>
+        ),
+        skills: [["Marketing Strategy"], ["Brand Development"], ["Campaign Coordination", "Content Creation"], ["Community Outreach", "Digital Media"]]
+    },
+    {
         title: "Assistant Digital Media Head",
         company: "ULM Office of Marketing and Communications",
         location: "Monroe, LA",
-        date: "Jan 2026 - Present",
+        date: "Jan 2026 - May 2026",
         description: (
             <>
                 <p className="mb-4 text-slate-900 leading-relaxed font-medium">
@@ -144,7 +178,7 @@ const TimelineItem = ({ exp, index, isLast }) => {
 
     return (
         <StaggerItem>
-            <div ref={ref} className="relative pl-8 md:pl-0 group/item min-h-[50svh] flex items-center py-12 md:py-24">
+            <div ref={ref} className="relative pl-8 md:pl-0 group/item flex items-center py-4 md:py-6">
                 {/* Vertical Line with "Light Up" Effect */}
                 <div className="absolute left-[8px] md:left-1/2 top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2 overflow-hidden">
                     <motion.div
@@ -187,7 +221,7 @@ const TimelineItem = ({ exp, index, isLast }) => {
                     </div>
 
                     {/* Center Dot */}
-                    <div className={`absolute left-[8px] md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full border-4 border-white z-10 transition-all duration-500 ${inView ? 'bg-slate-900 scale-125 shadow-lg' : 'bg-slate-300 scale-100'}`}></div>
+                    <div className={`absolute left-[8px] md:left-1/2 md:-translate-x-1/2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-4 border-white z-10 transition-all duration-500 ${inView ? 'bg-slate-900 scale-125 shadow-lg' : 'bg-slate-300 scale-100'}`}></div>
 
                     {/* Content Card */}
                     <motion.div
@@ -195,9 +229,9 @@ const TimelineItem = ({ exp, index, isLast }) => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="w-full md:w-5/12 bg-white/40 backdrop-blur-xl rounded-2xl md:rounded-[2rem] p-6 md:p-10 border border-slate-900/15 shadow-[inset_2px_2px_4px_rgba(255,255,255,0.8),inset_-2px_-2px_8px_rgba(0,0,0,0.15),0_25px_50px_rgba(0,0,0,0.1)] relative z-20 transition-all duration-500 hover:border-slate-900/30"
+                        className="w-full md:w-5/12 bg-white/40 backdrop-blur-xl rounded-2xl md:rounded-[2rem] p-6 md:p-8 border border-slate-900/15 shadow-[inset_2px_2px_4px_rgba(255,255,255,0.8),inset_-2px_-2px_8px_rgba(0,0,0,0.15),0_25px_50px_rgba(0,0,0,0.1)] relative z-20 transition-all duration-500 hover:border-slate-900/30"
                     >
-                        <div className="flex flex-col gap-1 mb-6">
+                        <div className="flex flex-col gap-1 mb-4">
                             <h3 className="text-xl sm:text-2xl font-heavy text-slate-900 tracking-tight leading-tight mb-2">{exp.title}</h3>
                             <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-sm font-medium text-slate-500">
                                 <span className="text-slate-800 font-bold">{exp.company}</span>
@@ -306,7 +340,7 @@ export const Discover = () => {
                                 >
                                     <span className="inline-block px-4 py-1.5 bg-slate-900 text-white text-[10px] font-heavy uppercase tracking-widest rounded-full mb-8">Who I Am</span>
                                     <p className="text-xl md:text-2xl text-slate-800 font-medium leading-relaxed mb-6">
-                                        I'm <strong className="font-heavy text-slate-900 text-[1.1em]">Apil KC</strong>. figuring out life and discovering myself as I go, with my main goal being successful and making my parents proud while embracing as much happiness as possible.
+                                        I'm <strong className="font-heavy text-slate-900 text-[1.1em]">Apil KC</strong>. figuring out life and discovering myself as I go, with my main goal being successful, to work in sports media, and making my parents proud while embracing as much happiness as possible.
                                     </p>
                                     <p className="text-lg md:text-xl text-slate-500 font-light leading-relaxed mb-12">
                                         I'm a visual storyteller blending technical skills in Computer Science and Analytics with a passion for high-end digital production.
@@ -347,8 +381,8 @@ export const Discover = () => {
                     </section>
 
                     {/* SECTION 2: PROFESSIONAL */}
-                    <section id="path" className="min-h-screen py-32 snap-start">
-                        <StaggerItem className="mb-20">
+                    <section id="path" className="min-h-screen py-20 md:py-24 snap-start">
+                        <StaggerItem className="mb-12 md:mb-16">
                             <h2 className="text-4xl xs:text-5xl md:text-7xl font-ultra-thin tracking-tighter text-slate-900 mb-6">
                                 My <strong className="font-heavy">Journey</strong>.
                             </h2>

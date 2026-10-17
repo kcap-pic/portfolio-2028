@@ -65,3 +65,34 @@ export const videosData = order.map(id => {
         behindTheScenes
     };
 }).filter(Boolean);
+
+export const gamedayVideos = [
+    {
+        id: 'mPg_6yaJ1H8',
+        youtubeId: 'mPg_6yaJ1H8',
+        title: 'Preview: ULM at UAB',
+        category: 'Game Preview',
+        sport: 'Football',
+        url: 'https://youtu.be/mPg_6yaJ1H8',
+        thumbnail: 'https://i.ytimg.com/vi/mPg_6yaJ1H8/hqdefault.jpg'
+    },
+    {
+        id: '0ZLcYU3Qi50',
+        youtubeId: '0ZLcYU3Qi50',
+        title: "Preview Women's Soccer: ULM vs ODU",
+        category: 'Game Preview',
+        sport: "Women's Soccer",
+        url: 'https://youtu.be/0ZLcYU3Qi50',
+        thumbnail: 'https://i.ytimg.com/vi/0ZLcYU3Qi50/hqdefault.jpg'
+    },
+    {
+        id: 'whJBBDerXRo',
+        youtubeId: 'whJBBDerXRo',
+        title: 'ULM Football Preview against Southeastern Louisiana',
+        category: 'Game Preview',
+        sport: 'Football',
+        url: 'https://youtu.be/whJBBDerXRo',
+        thumbnail: 'https://i.ytimg.com/vi/whJBBDerXRo/hqdefault.jpg'
+    }
+];
+

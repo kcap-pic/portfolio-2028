@@ -5,6 +5,7 @@ import path from 'path';
 const PUBLIC_DIR = './public';
 const CATEGORIES = ['Events', 'Outdoors', 'Portrait', 'Sports'];
 const OUTPUT_FILE = './public/photo-metadata.json';
+const SRC_OUTPUT_FILE = './src/data/photo-metadata.json';
 
 async function getFilesRecursively(dir) {
     let results = [];
@@ -74,8 +75,9 @@ async function extractAllMetadata() {
     }
 
     await fs.writeFile(OUTPUT_FILE, JSON.stringify(metadataMap, null, 2));
+    await fs.writeFile(SRC_OUTPUT_FILE, JSON.stringify(metadataMap, null, 2));
     console.log(`\n\n✅ Success! Extracted metadata for ${count} photos.`);
-    console.log(`💾 Saved to: ${OUTPUT_FILE}`);
+    console.log(`💾 Saved to: ${OUTPUT_FILE} and ${SRC_OUTPUT_FILE}`);
 }
 
 extractAllMetadata();

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import { StaggerContainer, StaggerItem } from '../components/StaggerAnimations';
-import { videosData } from '../data/videos';
+import { videosData, gamedayVideos } from '../data/videos';
 
 const VideoCard = ({ video, index, onClick, hoveredId, setHoveredId }) => {
     const videoRef = useRef(null);
@@ -148,12 +148,57 @@ const VideoCard = ({ video, index, onClick, hoveredId, setHoveredId }) => {
     );
 };
 
+const GamedayCard = ({ video, onPlay }) => {
+    return (
+        <StaggerItem>
+            <div 
+                className="flex flex-col group cursor-pointer"
+                onClick={() => onPlay(video)}
+            >
+                {/* 16:9 Thumbnail container */}
+                <motion.div
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    transition={{ duration: 0.35, ease: [0.165, 0.84, 0.44, 1] }}
+                    className="relative w-full aspect-video rounded-2xl md:rounded-[1.5rem] overflow-hidden bg-slate-900 shadow-xl border border-slate-900/10"
+                >
+                    <img
+                        src={video.thumbnail}
+                        alt={video.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
+
+                    {/* Play Button Icon on Hover */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center shadow-2xl border border-white/20 group-hover:scale-110 group-hover:bg-red-600 group-hover:border-red-600 transition-all duration-300">
+                            <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* Title below thumbnail */}
+                <div className="mt-3.5">
+                    <h3 className="text-sm sm:text-base md:text-lg font-medium text-slate-800 leading-snug group-hover:text-slate-950 transition-colors line-clamp-2">
+                        {video.title}
+                    </h3>
+                </div>
+            </div>
+        </StaggerItem>
+    );
+};
+
 export const Videos = () => {
     const [selectedVideo, setSelectedVideo] = useState(null);
+    const [selectedYouTube, setSelectedYouTube] = useState(null);
     const [hoveredId, setHoveredId] = useState(null);
 
     useEffect(() => {
-        if (selectedVideo) {
+        if (selectedVideo || selectedYouTube) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = '';
@@ -161,7 +206,7 @@ export const Videos = () => {
         return () => {
             document.body.style.overflow = '';
         };
-    }, [selectedVideo]);
+    }, [selectedVideo, selectedYouTube]);
 
     const quarticOut = [0.165, 0.84, 0.44, 1];
 
@@ -201,8 +246,30 @@ export const Videos = () => {
                         </div>
                     )}
                 </div>
+
+                {/* Gameday Section */}
+                <div className="mt-28 md:mt-36 pt-16 md:pt-20 border-t border-slate-900/10">
+                    <StaggerItem>
+                        <div className="mb-10 md:mb-14 text-center md:text-left">
+                            <h2 className="text-4xl xs:text-5xl md:text-6xl lg:text-7xl font-ultra-thin tracking-tighter mb-4 text-slate-900 drop-shadow-sm">
+                                Game<strong className="font-heavy">day</strong>.
+                            </h2>
+                        </div>
+                    </StaggerItem>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
+                        {gamedayVideos.map((video) => (
+                            <GamedayCard
+                                key={video.id}
+                                video={video}
+                                onPlay={setSelectedYouTube}
+                            />
+                        ))}
+                    </div>
+                </div>
             </StaggerContainer>
 
+            {/* Reels Fullscreen Snap Modal */}
             <AnimatePresence>
                 {selectedVideo && (
                     <motion.div
@@ -225,6 +292,43 @@ export const Videos = () => {
                                 onClose={() => setSelectedVideo(null)}
                             />
                         ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* YouTube Embed Modal */}
+            <AnimatePresence>
+                {selectedYouTube && (
+                    <motion.div
+                        key="youtube-modal"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center p-4 md:p-8"
+                        onClick={() => setSelectedYouTube(null)}
+                    >
+                        <div 
+                            className="relative w-full max-w-5xl aspect-video rounded-2xl md:rounded-[2rem] overflow-hidden shadow-2xl bg-black border border-white/10"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <iframe
+                                src={`https://www.youtube-nocookie.com/embed/${selectedYouTube.youtubeId}?autoplay=1&rel=0`}
+                                title={selectedYouTube.title}
+                                className="w-full h-full border-0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                            />
+                        </div>
+
+                        <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between w-full max-w-5xl gap-4 px-2" onClick={(e) => e.stopPropagation()}>
+                            <h3 className="text-white text-base md:text-lg font-medium tracking-normal">{selectedYouTube.title}</h3>
+                            <button
+                                onClick={() => setSelectedYouTube(null)}
+                                className="px-5 py-2.5 bg-white/20 hover:bg-white/30 text-white rounded-full text-xs font-heavy tracking-wider uppercase transition-colors self-end sm:self-auto cursor-pointer"
+                            >
+                                Close ✕
+                            </button>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

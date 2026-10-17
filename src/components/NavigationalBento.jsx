@@ -131,7 +131,7 @@ export const ProfessionalSection = ({ className }) => {
             id: 'experience',
             label: 'Professional',
             title: 'Experience & Awards',
-            sub: '3 roles · 6 regional awards',
+            sub: '5 roles · 6 regional awards',
             // Simple gradient bg strip since there's no single cover image
             img: null,
             gradientFrom: '#1e293b',

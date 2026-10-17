@@ -32,7 +32,7 @@ const GlobalSwipeHandler = ({ currentPath }) => {
 
     const routes = ['/', '/photography', '/videos', '/discover', '/case-studies'];
     let currentIndex = routes.indexOf(currentPath);
-    
+
     // Map sub-routes to main sequence
     if (currentPath.startsWith('/photography/')) currentIndex = 1;
     if (currentPath.startsWith('/case-studies/')) currentIndex = 4;
@@ -54,7 +54,7 @@ const GlobalSwipeHandler = ({ currentPath }) => {
       // Ignore if user is selecting text or scrolling with multiple fingers
       if (lockSwipe) return;
       if (!e.type.includes('touch') && e.buttons !== 1) return;
-      
+
       const touchCurrentY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
       const deltaY = touchStartY - touchCurrentY;
 
@@ -66,7 +66,7 @@ const GlobalSwipeHandler = ({ currentPath }) => {
       if (deltaY > 60 && isAtBottom && currentIndex < routes.length - 1) {
         setSwipeCue('next');
         isPulling = true;
-      } 
+      }
       // Swiping DOWN (pulling content down) => going PREV route
       else if (deltaY < -60 && isAtTop && currentIndex > 0) {
         setSwipeCue('prev');
@@ -79,10 +79,10 @@ const GlobalSwipeHandler = ({ currentPath }) => {
 
     const handleTouchEnd = (e) => {
       if (lockSwipe || !isPulling) {
-          setSwipeCue(null);
-          return;
+        setSwipeCue(null);
+        return;
       }
-      
+
       const touchCurrentY = e.type.includes('touch') ? e.changedTouches[0].clientY : e.clientY;
       const deltaY = touchStartY - touchCurrentY;
 
@@ -90,13 +90,13 @@ const GlobalSwipeHandler = ({ currentPath }) => {
       const isAtBottom = Math.ceil(window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 10);
 
       if (deltaY > 75 && isAtBottom && currentIndex < routes.length - 1) {
-          lockSwipe = true;
-          window.location.hash = routes[currentIndex + 1];
+        lockSwipe = true;
+        window.location.hash = routes[currentIndex + 1];
       } else if (deltaY < -75 && isAtTop && currentIndex > 0) {
-          lockSwipe = true;
-          window.location.hash = routes[currentIndex - 1];
+        lockSwipe = true;
+        window.location.hash = routes[currentIndex - 1];
       }
-      
+
       setSwipeCue(null);
       setTimeout(() => { lockSwipe = false; }, 500);
     };
@@ -105,7 +105,7 @@ const GlobalSwipeHandler = ({ currentPath }) => {
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
     window.addEventListener('touchmove', handleTouchMove, { passive: true });
     window.addEventListener('touchend', handleTouchEnd, { passive: true });
-    
+
     // Desktop mouse events (for dev emulation)
     window.addEventListener('mousedown', handleTouchStart, { passive: true });
     window.addEventListener('mousemove', handleTouchMove, { passive: true });
@@ -124,28 +124,28 @@ const GlobalSwipeHandler = ({ currentPath }) => {
   return (
     <AnimatePresence>
       {swipeCue === 'prev' && (
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          exit={{ opacity: 0 }} 
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
           className="fixed top-0 left-0 w-full h-20 bg-gradient-to-b from-black/40 to-transparent z-[200] flex justify-center items-start pt-3 pointer-events-none drop-shadow-xl"
         >
           <div className="flex flex-col items-center opacity-90">
-             <span className="text-[10px] font-heavy tracking-[0.2em] text-white uppercase">Previous</span>
-             <svg className="w-5 h-5 text-white animate-bounce mt-1 drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 15l7-7 7 7" /></svg>
+            <span className="text-[10px] font-heavy tracking-[0.2em] text-white uppercase">Previous</span>
+            <svg className="w-5 h-5 text-white animate-bounce mt-1 drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 15l7-7 7 7" /></svg>
           </div>
         </motion.div>
       )}
       {swipeCue === 'next' && (
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          exit={{ opacity: 0 }} 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
           className="fixed bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black/40 to-transparent z-[200] flex justify-center items-end pb-3 pointer-events-none drop-shadow-xl"
         >
           <div className="flex flex-col items-center opacity-90">
-             <svg className="w-5 h-5 text-white animate-bounce mb-1 drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" /></svg>
-             <span className="text-[10px] font-heavy tracking-[0.2em] text-white uppercase">Next Page</span>
+            <svg className="w-5 h-5 text-white animate-bounce mb-1 drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" /></svg>
+            <span className="text-[10px] font-heavy tracking-[0.2em] text-white uppercase">Next Page</span>
           </div>
         </motion.div>
       )}

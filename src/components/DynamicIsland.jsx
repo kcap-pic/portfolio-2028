@@ -130,11 +130,11 @@ const ContactMiniPreview = () => (
 const AboutMiniPreview = () => (
     <div className="w-[18rem] h-[12rem] rounded-[1.2rem] bg-[#fafafa] border border-slate-200 p-0 flex flex-col items-center justify-end relative overflow-hidden shadow-inner" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '12px 12px' }}>
         <div className="absolute inset-0 flex items-center justify-center pt-4">
-            <img 
-                src="/apil-cutout.png" 
-                className="h-[120%] w-auto object-contain drop-shadow-2xl" 
+            <img
+                src="/apil-cutout.png"
+                className="h-[120%] w-auto object-contain drop-shadow-2xl"
                 style={{ filter: 'saturate(1.1) contrast(1.05)' }}
-                alt="" 
+                alt=""
             />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#fafafa] via-transparent to-transparent pointer-events-none"></div>
@@ -358,8 +358,8 @@ export const DynamicIsland = ({ currentPath }) => {
                             className="pointer-events-auto relative flex items-center justify-center rounded-[2rem] min-h-[44px] sm:rounded-full"
                             style={{
                                 ...glassStyle,
-                                width: showLinks 
-                                    ? (isMobile ? '95vw' : '480px') 
+                                width: showLinks
+                                    ? (isMobile ? '95vw' : '480px')
                                     : (isMobile ? '120px' : '140px'),
                                 height: '44px',
                                 minHeight: '44px',
@@ -426,14 +426,13 @@ export const DynamicIsland = ({ currentPath }) => {
                                                     clearTimeout(phaseTimer.current);
                                                 }
                                             }}
-                                            className={`px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors duration-150 block ${
-                                                link.disabled
+                                            className={`px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors duration-150 block ${link.disabled
                                                     ? isLightPage ? 'text-slate-400 cursor-not-allowed' : 'text-white/30 cursor-not-allowed'
                                                     : isActive(link.href)
-                        ? isLightPage ? 'bg-slate-900/10 text-slate-900 cursor-pointer' : 'bg-white/20 text-white cursor-pointer'
-                        : isLightPage ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-900/5 cursor-pointer' : 'text-white/60 hover:text-white hover:bg-white/10 cursor-pointer'
-                    }`}
-                                    >
+                                                        ? isLightPage ? 'bg-slate-900/10 text-slate-900 cursor-pointer' : 'bg-white/20 text-white cursor-pointer'
+                                                        : isLightPage ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-900/5 cursor-pointer' : 'text-white/60 hover:text-white hover:bg-white/10 cursor-pointer'
+                                                }`}
+                                        >
                                             {link.label}
                                         </a>
 
@@ -487,7 +486,7 @@ export const DynamicIsland = ({ currentPath }) => {
                                 onClick={() => setPhase('links')}
                                 onMouseEnter={() => setPhase('links')}
                             >
-                                 <span className="w-1.5 h-1.5 rounded-full block" style={{ background: isLightPage ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)' }} />
+                                <span className="w-1.5 h-1.5 rounded-full block" style={{ background: isLightPage ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)' }} />
                                 <span className={`relative z-10 transition-transform duration-300 hover:scale-110 cursor-pointer ${isLightPage ? 'text-slate-900' : 'text-white'} font-bold whitespace-nowrap ${isMobile ? 'text-xs' : 'text-sm'} ${isShining ? 'drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]' : ''}`}>MENU</span>
                                 <span className="w-1.5 h-1.5 rounded-full block" style={{ background: isLightPage ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.5)' }} />
                             </div>

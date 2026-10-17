@@ -242,6 +242,24 @@
     "focal": "85mm",
     "lens": "EF70-200mm f/2.8L IS III USM"
   },
+  "Portrait/NIRJARA (1208)": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/400s",
+    "aperture": "f/1.8",
+    "iso": "ISO 100",
+    "focal": "40mm",
+    "lens": "17-40mm F1.8 DC | Art 025"
+  },
+  "Portrait/NIRJARA (1604)": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/25s",
+    "aperture": "f/5.6",
+    "iso": "ISO 100",
+    "focal": "36mm",
+    "lens": "17-40mm F1.8 DC | Art 025"
+  },
   "Sports/Baseball/IMG_4963": {
     "model": "Canon EOS R6m2",
     "make": "Canon",
@@ -557,6 +575,33 @@
     "focal": "70mm",
     "lens": "EF70-200mm f/2.8L IS III USM"
   },
+  "Sports/Football/IMG_0109": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 100",
+    "focal": "85mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/IMG_1897": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 400",
+    "focal": "70mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/IMG_1917-2": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 640",
+    "focal": "160mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
   "Sports/Football/IMG_2127": {
     "model": "Canon EOS R6m2",
     "make": "Canon",
@@ -566,6 +611,24 @@
     "focal": "88mm",
     "lens": "EF70-200mm f/2.8L IS III USM"
   },
+  "Sports/Football/IMG_2215": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/5000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 500",
+    "focal": "70mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/IMG_2287": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/1250s",
+    "aperture": "f/2.8",
+    "iso": "ISO 2500",
+    "focal": "200mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
   "Sports/Football/IMG_2429": {
     "model": "Canon EOS R6m2",
     "make": "Canon",
@@ -573,6 +636,15 @@
     "aperture": "f/2.8",
     "iso": "ISO 100",
     "focal": "145mm",
+    "lens": "EF70-200mm f/2.8L IS III USM"
+  },
+  "Sports/Football/IMG_2492-2": {
+    "model": "Canon EOS R6m2",
+    "make": "Canon",
+    "shutter": "1/5000s",
+    "aperture": "f/2.8",
+    "iso": "ISO 500",
+    "focal": "200mm",
     "lens": "EF70-200mm f/2.8L IS III USM"
   },
   "Sports/Football/IMG_2500": {
